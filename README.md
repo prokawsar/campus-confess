@@ -12,6 +12,7 @@
 
 - [x] Clone the repo `git clone https://github.com/prokawsar/campus-confess.git`
 - [x] Go to directory run command `composer install`
-- [x] Make `.env` file from `.env.example` with your configuration.
+- [x] Make `.env` file from `.env.example` with your configuration (`cp .env.example .env`).
+- [x] Then run `php artisan key:generate`
 - [x] Now contribute and enjoy
  ## Done
