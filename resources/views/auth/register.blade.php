@@ -16,7 +16,6 @@
 
                             <div class="col-md-6">
                                 <input id="campus" type="text" class="form-control" name="campus" value ="{{ old('campus') }}" required>
-
                                 
                             </div>
                         </div>
