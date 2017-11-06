@@ -14,4 +14,4 @@
 - [x] Go to directory run command `composer install`
 - [x] Make `.env` file from `.env.example` with your configuration.
 - [x] Now contribute and enjoy
- ##Done
+ ## Done
