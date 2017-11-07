@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\UserPost;
 use Illuminate\Http\Request;
+
 
 class HomeController extends Controller
 {
+
+
     /**
+     *
      * Create a new controller instance.
      *
      * @return void
@@ -23,6 +28,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $allPosts=UserPost::with('user')->orderBy('created_at', 'DESC')->paginate(100);
+        return view('home',compact('allPosts'));
+    }
+
+    public function storePosts(Request $request){
+        $userPost=new UserPost();
+        $userPost->posts=$request->posts;
+        $userPost->user_id=$request->user_id;
+        $userPost->save();
+        return response()->json([
+            'message'=>'Data submitted'
+        ]);
     }
 }

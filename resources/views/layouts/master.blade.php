@@ -10,10 +10,11 @@
 
     <title>{{ config('app.name', 'Campus Confess') }}</title>
 
+
     <!-- Styles -->
     <link href="css/app.css" rel="stylesheet">
 
-    <link rel="shortcut icon" href="{{{ asset('img/favicon.png') }}}">
+    <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
     
     <!-- Scripts -->
     <script>
@@ -30,5 +31,6 @@
     <!-- </div> -->
         @include('layouts.partials._footer')
 
+    @include('script')
 </body>
 </html>

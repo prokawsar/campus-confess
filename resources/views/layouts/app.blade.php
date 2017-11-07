@@ -10,10 +10,10 @@
 
     <title>{{ config('app.name', 'Campus Confess') }}</title>
 
-    <link rel="shortcut icon" href="{{{ asset('img/favicon.png') }}}">
-    
+    <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+{{--    <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">--}}
 </head>
 <body>
     <div id="app">
@@ -78,5 +78,6 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    @yield('script')
 </body>
 </html>
