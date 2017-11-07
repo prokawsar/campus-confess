@@ -10,6 +10,8 @@
 
     <title>{{ config('app.name', 'Campus Confess') }}</title>
 
+    <link rel="shortcut icon" href="{{{ asset('img/favicon.png') }}}">
+    
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>

@@ -87,7 +87,8 @@ return [
     'unique'               => 'The :attribute has already been taken.',
     'uploaded'             => 'The :attribute failed to upload.',
     'url'                  => 'The :attribute format is invalid.',
-
+    'campus_email'         => 'The :attribute must be in @daffodil.ac.',
+    
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

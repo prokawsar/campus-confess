@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,6 +17,14 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Schema::defaultStringLength(191);
+        
+        Validator::extend('CampusEmail', function($attribute, $value, $parameters, $validator) {
+           
+            if(preg_match('/(.*)daffodil\.ac$/i', $value)){
+                return true;
+            }
+                return false;
+        });
 
     }
 

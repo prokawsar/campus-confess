@@ -1,6 +1,6 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
+    "name": "Campus Confess",
+    "description": "A web application for confession inside the campus people.",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
