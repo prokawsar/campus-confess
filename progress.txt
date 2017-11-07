@@ -1,0 +1,7 @@
+TO ADD PROGRESS, FOLLOW THIS STRUCTURE
+{
+-> date
+-> name
+-> partial/completed task name
+}
+
