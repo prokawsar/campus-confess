@@ -41,7 +41,7 @@
                          @if (Auth::user())
                          <li class="nav-item">
                             <a class="nav-link" href="#">My Confess</a> 
-                            <!-- {{ route('myconfess') }} -->
+                            <!-- have to add myconfess route -->
                         </li>
                         @endif
                     </ul>
