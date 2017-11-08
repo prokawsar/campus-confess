@@ -14,5 +14,6 @@
 - [x] Go to directory run command `composer install`
 - [x] Make `.env` file from `.env.example` with your configuration (`cp .env.example .env`).
 - [x] Then run `php artisan key:generate`
+- [x] Then run `php artisan migrate` on a empty database for creating all tables.
 - [x] Now contribute and enjoy
  ## Done
