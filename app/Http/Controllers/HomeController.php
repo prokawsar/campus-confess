@@ -38,7 +38,13 @@ class HomeController extends Controller
         $userPost->user_id=$request->user_id;
         $userPost->save();
         return response()->json([
-            'message'=>'Data submitted'
+            'message'=>'Confess Successful'
         ]);
+    }
+
+    public function myconfess(){
+        
+        $myPosts=UserPost::with('user')->paginate(20);
+        return view('myconfess', compact('myPosts'));
     }
 }
