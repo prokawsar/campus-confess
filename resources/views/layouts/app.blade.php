@@ -40,7 +40,7 @@
                     <ul class="nav navbar-nav">
                          @if (Auth::user())
                          <li class="nav-item">
-                            <a class="nav-link" href="#">My Confess</a> 
+                            <a class="nav-link" href="{{ route('myconfess') }}">My Confess</a> 
                             <!-- have to add myconfess route -->
                         </li>
                         @endif
