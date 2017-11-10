@@ -5,7 +5,7 @@
     <div class="row">
         <div class="content">
         <div class="col-md-12">
-            <div class="panel panel-info">
+            <div class="panel panel-primary">
                 <div class="panel-heading">Confess Timeline</div>
                 <div class="panel-body">
                     <table id="postsTable">

@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                    <div class="panel panel-info">
+                    <div class="panel panel-default">
                         <div class="panel-heading">Share your speech.....</div>
                         <div class="panel-body">
                             <span class="label label-success postConfirm" style="font-size: 15px"></span>
@@ -42,7 +42,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="panel panel-info">
+            <div class="panel panel-primary">
                 <div class="panel-heading">Recent posts</div>
                 <div class="panel-body">
                     <table id="postsTable">
