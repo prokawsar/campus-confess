@@ -9,3 +9,7 @@ TO ADD PROGRESS, FOLLOW THIS STRUCTURE
 Kawsar
 modify app name, tried to add myconfess route
 
+...............................................................
+Saturday 11-11-17
+Users can view their posts on my confess posted by them.
+Users can delete their posts

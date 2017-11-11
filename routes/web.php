@@ -24,3 +24,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/storePosts','HomeController@storePosts');
+
+Route::get('deletePost/{id}','HomeController@deletePost');
