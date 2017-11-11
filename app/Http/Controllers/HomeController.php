@@ -45,13 +45,13 @@ class HomeController extends Controller
 
     public function myconfess(){
         $id = Auth::id();
-        $myPosts=UserPost::with('user')->where('user_id',$id)->paginate(5);
+        $myPosts=UserPost::with('user')->where('user_id',$id)->orderBy('created_at', 'desc')->paginate(5);
         return view('myconfess', compact('myPosts'));
     }
 
     public function deletePost($id){
         UserPost::find($id)->delete();
-        return redirect('myconfess')->with('deletePost',"Your post has been deleted !!");
+        return redirect('myconfess')->with('deletePost',"Your confess has been deleted !!");
 
     }
 }

@@ -13,7 +13,8 @@
     <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-{{--    <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">--}}
+    <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet">
+    
 </head>
 <body>
     <div id="app">
@@ -41,7 +42,7 @@
                          @if (Auth::user())
                          <li class="nav-item">
                             <a class="nav-link" href="{{ route('myconfess') }}">My Confess</a> 
-                            <!-- have to add myconfess route -->
+                    
                         </li>
                         @endif
                     </ul>

@@ -44,14 +44,29 @@
         <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">Recent posts</div>
-                <div class="panel-body">
-                    <table id="postsTable">
-                        @foreach($allPosts as $posts)
-                        <tr>
-                            <td><strong>Posted by <i class="fa fa-user" aria-hidden="true"></i>{{$posts->user->display_name}}  </strong><br/> <p>{{$posts->posts}}</p></td>
-                        </tr>
-                        @endforeach
-                    </table>
+                <div id="postsTable" class="panel-body">
+
+                    @foreach($allPosts as $posts)
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="panel panel-default">
+                                <div class="panel-heading"><strong>Posted by <img src="{{asset('img/p_logo.jpg')}}" alt="profile">{{$posts->user->display_name}} &nbsp</strong>
+                                 {{$posts->created_at->diffForHumans()}} 
+                                </div>
+                                <div class="panel-body">
+                                    <p>{{$posts->posts}}</p>
+                                    <div class="well well-sm">
+                                        Like
+                                    </div>
+                                    <input id="comment" placeholder="Write a comment..." type="text" class="form-control" name="comment" >
+
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                   
                     {{$allPosts->links()}}
 
                 </div>

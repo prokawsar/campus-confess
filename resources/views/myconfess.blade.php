@@ -12,10 +12,10 @@
                 @endif
                 <div class="panel-heading">Confess Timeline</div>
                 <div class="panel-body">
-                    <table id="postsTable">
+                    <table class="table table-hover">
                         @foreach($myPosts as $posts)
-                        <tr>
-                            <td><strong>  </strong><br/> <p>{{$posts->posts}} on {{$posts->created_at}}</p></td>
+                        <tr class="">
+                            <td><br/> <p>{{$posts->posts}} <br/> on {{$posts->created_at->diffForHumans()}}</p></td>
 
                             <td> <a href="{{url('deletePost/'.$posts->id)}}" class="btn btn-danger">Remove this post</a></td>
                         </tr>
