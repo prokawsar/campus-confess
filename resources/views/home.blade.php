@@ -43,7 +43,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-primary">
-                <div class="panel-heading">Recent posts</div>
+                <div class="panel-heading">Confess from (University Name)</div>
                 <div id="postsTable" class="panel-body">
 
                     @php
@@ -92,7 +92,7 @@
                                         @endif
                                     {{--</div>--}}
                                     <form action="">
-                                        <input id="comment" placeholder="Write a comment..." type="text" class="form-control" name="comment" >
+                                        <textarea onkeyup="increaseHeight(this);" id="comment" placeholder="Write a comment..." type="text" class="form-control" name="comment" ></textarea>
                                     </form>
                                 </div>
                                 
@@ -114,8 +114,15 @@
 @section('script')
 
     <script src="{{asset('js/Posts.js')}}"></script>
+
     <script>
         var token='{{\Illuminate\Support\Facades\Session::token()}}';
+        
+        function increaseHeight(e){
+            e.style.height = 'auto';
+            var newHeight = (e.scrollHeight > 32 ? e.scrollHeight : 32);
+            e.style.height = newHeight.toString() + 'px';
+        }  
     </script>
 @endsection
 

@@ -52,7 +52,18 @@
                         </li>
                         @endif
                     </ul>
-
+               
+                    <form class="nav navbar-nav navbar-form" id="navBarSearch" role="search">
+                        <div class="form-group">
+                            <div style="display:table;" class="input-group">
+                                <input type="text" class="form-control" placeholder="Search any word...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-green" type="button"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
