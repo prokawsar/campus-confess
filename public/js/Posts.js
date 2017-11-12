@@ -41,7 +41,16 @@ $(document).on('click','#like',function () {
     var postid = $(this);
     var userid = $(this);
     var divId=$(this);
+
+
+    // var elements = document.getElementsByName('postDiv');
+    // var id = elements[1].getAttribute('id');
+    // alert(id);
+
     // alert(divId.data('id2'));
+    // document.getElementById().load();
+
+
 
     $.ajax({
         type: 'post',
@@ -53,8 +62,7 @@ $(document).on('click','#like',function () {
         },
         success: function (response) {
             console.log(response['message']);
-            $('#like').hide();
-            // $('#dislike').show();
+            location.reload();
         },
 
         error: function (response) {
@@ -66,8 +74,10 @@ $(document).on('click','#like',function () {
 
 $(document).on('click','#dislike',function () {
 
+
     var postid = $(this);
     var userid = $(this);
+
 
     $.ajax({
         type: 'post',
@@ -79,7 +89,7 @@ $(document).on('click','#dislike',function () {
         },
         success: function (response) {
             console.log(response['data']);
-
+            location.reload();
         },
         error: function (response) {
             console.log(response['data']);
@@ -94,8 +104,12 @@ $(document).ready(function () {
     //     $('#postsDiv').load(location.href+ ' #postsDiv');
     // },3000);
 
-
 });
+
+function myFunction() {
+
+    // document.getElementById("postsDiv").load();
+}
 
 
 

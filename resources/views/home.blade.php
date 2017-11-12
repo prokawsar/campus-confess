@@ -52,24 +52,20 @@
 
                     @foreach($allPosts as $posts)
 
-
-
-                    <div class="row" id="postsDiv">
+                    <div class="row">
                         <div class="col-md-8 col-md-offset-2">
                             <div class="panel panel-default">
                                 <div class="panel-heading"><strong>Posted by <img src="{{asset('img/p_logo.jpg')}}" alt="profile">{{$posts->user->display_name}} &nbsp</strong>
                                  {{$posts->created_at->diffForHumans()}} 
                                 </div>
-                                <div class="panel-body">
+                                <div class="panel-body"  id="postDiv">
                                     <div class="well well-sm">
-<<<<<<< HEAD
                                     <p>{{$posts->posts}}</p>
-=======
-                                        <i class="fa fa-thumbs-o-up fa-2x"></i> <strong>Like</strong>
->>>>>>> a2d44471eee97a9bbdb05b4ce133d17d143c9454
+
+
                                     </div>
 
-                                    {{--<div class="well well-sm" id="reload">--}}
+                                    <div id="reload">
                                         @php
                                             $count=\App\Like_Post::where('post_id',$posts->id)->count();
                                         @endphp
@@ -86,15 +82,13 @@
                                         @endif
 
                                         @if(Auth::user()->likepost()->where(['post_id' => $posts->id])->get()->count()==0)
-
-                                            <a style="cursor: pointer;text-decoration: none;color: #040b02" id="like"  title="Like it" data-id="{{$posts->id}}" data-id1="{{\Illuminate\Support\Facades\Auth::id()}}"><i class="fa fa-thumbs-up fa-lg"></i></a>
-
+                                            <a style="cursor: pointer;text-decoration: none;color: #040b02" id="like" onclick="myFunction()"  title="Like it" data-id="{{$posts->id}}" data-id1="{{\Illuminate\Support\Facades\Auth::id()}}"><i class="fa fa-thumbs-up fa-lg"></i></a>
                                         @else
 
                                         <a style="cursor: pointer" title="Unlike"  id="dislike" data-id="{{$posts->id}}" data-id1="{{\Illuminate\Support\Facades\Auth::id()}}"><i class="fa fa-thumbs-up fa-lg"></i></a>
 
                                         @endif
-                                    {{--</div>--}}
+                                    </div>
                                     <form action="">
                                         <input id="comment" placeholder="Write a comment..." type="text" class="form-control" name="comment" >
                                     </form>
@@ -119,7 +113,9 @@
 
     <script src="{{asset('js/Posts.js')}}"></script>
     <script>
+
         var token='{{\Illuminate\Support\Facades\Session::token()}}';
+
     </script>
 @endsection
 
