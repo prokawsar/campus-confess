@@ -15,9 +15,12 @@
     <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}"> -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">    
-    
+{{--    <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">--}}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
 </head>
 <body>
     <div id="app">
@@ -49,7 +52,18 @@
                         </li>
                         @endif
                     </ul>
-
+               
+                    <form class="nav navbar-nav navbar-form" id="navBarSearch" role="search">
+                        <div class="form-group">
+                            <div style="display:table;" class="input-group">
+                                <input type="text" class="form-control" placeholder="Search any word...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-green" type="button"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->

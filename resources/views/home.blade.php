@@ -43,7 +43,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-primary">
-                <div class="panel-heading">Recent posts</div>
+                <div class="panel-heading">Confess from (University Name)</div>
                 <div id="postsTable" class="panel-body">
 
                     @php
@@ -54,7 +54,7 @@
 
 
 
-                    <div class="row" id="postsDiv{{$posts->id}}">
+                    <div class="row" id="postsDiv">
                         <div class="col-md-8 col-md-offset-2">
                             <div class="panel panel-default">
                                 <div class="panel-heading"><strong>Posted by <img src="{{asset('img/p_logo.jpg')}}" alt="profile">{{$posts->user->display_name}} &nbsp</strong>
@@ -62,7 +62,7 @@
                                 </div>
                                 <div class="panel-body">
                                     <div class="well well-sm">
-                                        <p>{{$posts->posts}}</p>
+                                    <p>{{$posts->posts}}</p>
                                     </div>
 
                                     {{--<div class="well well-sm" id="reload">--}}
@@ -87,12 +87,12 @@
 
                                         @else
 
-                                            <a style="cursor: pointer" title="Unlike"  id="dislike" data-id="{{$posts->id}}" data-id1="{{\Illuminate\Support\Facades\Auth::id()}}"><i class="fa fa-thumbs-up fa-lg"></i></a>
+                                        <a style="cursor: pointer" title="Unlike"  id="dislike" data-id="{{$posts->id}}" data-id1="{{\Illuminate\Support\Facades\Auth::id()}}"><i class="fa fa-thumbs-up fa-lg"></i></a>
 
                                         @endif
                                     {{--</div>--}}
                                     <form action="">
-                                        <input id="comment" placeholder="Write a comment..." type="text" class="form-control" name="comment" >
+                                        <textarea onkeyup="increaseHeight(this);" id="comment" placeholder="Write a comment..." type="text" class="form-control" name="comment" ></textarea>
                                     </form>
                                 </div>
                                 
@@ -114,11 +114,15 @@
 @section('script')
 
     <script src="{{asset('js/Posts.js')}}"></script>
+
     <script>
         var token='{{\Illuminate\Support\Facades\Session::token()}}';
-        function onload(){
-
-        }
+        
+        function increaseHeight(e){
+            e.style.height = 'auto';
+            var newHeight = (e.scrollHeight > 32 ? e.scrollHeight : 32);
+            e.style.height = newHeight.toString() + 'px';
+        }  
     </script>
 @endsection
 
