@@ -53,7 +53,7 @@ $(document).on('click','#like',function () {
         },
         success: function (response) {
             console.log(response['message']);
-           
+            location.reload();
         },
 
         error: function (response) {
@@ -78,7 +78,7 @@ $(document).on('click','#dislike',function () {
         },
         success: function (response) {
             console.log(response['data']);
-
+            location.reload();
         },
         error: function (response) {
             console.log(response['data']);
@@ -86,15 +86,6 @@ $(document).on('click','#dislike',function () {
     });
 });
 
-$(document).ready(function () {
-    // setTimeout(function(){ ('#posts'); }, 3000);
-
-    // setInterval(function(){
-    //     $('#postsDiv').load(location.href+ ' #postsDiv');
-    // },3000);
-
-
-});
 
 
 

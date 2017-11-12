@@ -92,7 +92,7 @@
                                         @endif
                                     {{--</div>--}}
                                     <form action="">
-                                        <textarea onkeyup="increaseHeight(this);" id="comment" placeholder="Write a comment..." type="text" class="form-control" name="comment" ></textarea>
+                                        <textarea onkeyup="increaseHeight(this);" id="comment" placeholder="Write a comment..." type="text" class="form-control" name="comment" style="padding-top:10px;"></textarea>
                                     </form>
                                 </div>
                                 
