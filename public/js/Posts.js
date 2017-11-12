@@ -37,11 +37,12 @@ $(document).on('click','#addPost',function () {
     }
 });
 
+// Like and Unlike function
+
 $(document).on('click','#like',function () {
     var postid = $(this);
     var userid = $(this);
     var divId=$(this);
-    // alert(divId.data('id2'));
 
     $.ajax({
         type: 'post',
@@ -53,8 +54,6 @@ $(document).on('click','#like',function () {
         },
         success: function (response) {
             console.log(response['message']);
-            $('#like').hide();
-            // $('#dislike').show();
         },
 
         error: function (response) {
@@ -86,17 +85,3 @@ $(document).on('click','#dislike',function () {
         }
     });
 });
-
-$(document).ready(function () {
-    // setTimeout(function(){ ('#posts'); }, 3000);
-
-    // setInterval(function(){
-    //     $('#postsDiv').load(location.href+ ' #postsDiv');
-    // },3000);
-
-
-});
-
-
-
-
