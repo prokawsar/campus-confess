@@ -40,7 +40,7 @@ $(document).on('click','#addPost',function () {
 $(document).on('click','#like',function () {
     var postid = $(this);
     var userid = $(this);
-    var divId=$(this);
+    var divId = $(this);
     // alert(divId.data('id2'));
 
     $.ajax({
@@ -53,8 +53,7 @@ $(document).on('click','#like',function () {
         },
         success: function (response) {
             console.log(response['message']);
-            $('#like').hide();
-            // $('#dislike').show();
+           
         },
 
         error: function (response) {

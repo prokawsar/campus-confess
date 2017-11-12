@@ -54,7 +54,7 @@
 
 
 
-                    <div class="row" id="postsDiv">
+                    <div class="row" id="postsDiv{{$posts->id}}">
                         <div class="col-md-8 col-md-offset-2">
                             <div class="panel panel-default">
                                 <div class="panel-heading"><strong>Posted by <img src="{{asset('img/p_logo.jpg')}}" alt="profile">{{$posts->user->display_name}} &nbsp</strong>
@@ -62,11 +62,7 @@
                                 </div>
                                 <div class="panel-body">
                                     <div class="well well-sm">
-<<<<<<< HEAD
-                                    <p>{{$posts->posts}}</p>
-=======
-                                        <i class="fa fa-thumbs-o-up fa-2x"></i> <strong>Like</strong>
->>>>>>> a2d44471eee97a9bbdb05b4ce133d17d143c9454
+                                        <p>{{$posts->posts}}</p>
                                     </div>
 
                                     {{--<div class="well well-sm" id="reload">--}}
@@ -91,7 +87,7 @@
 
                                         @else
 
-                                        <a style="cursor: pointer" title="Unlike"  id="dislike" data-id="{{$posts->id}}" data-id1="{{\Illuminate\Support\Facades\Auth::id()}}"><i class="fa fa-thumbs-up fa-lg"></i></a>
+                                            <a style="cursor: pointer" title="Unlike"  id="dislike" data-id="{{$posts->id}}" data-id1="{{\Illuminate\Support\Facades\Auth::id()}}"><i class="fa fa-thumbs-up fa-lg"></i></a>
 
                                         @endif
                                     {{--</div>--}}
@@ -120,6 +116,9 @@
     <script src="{{asset('js/Posts.js')}}"></script>
     <script>
         var token='{{\Illuminate\Support\Facades\Session::token()}}';
+        function onload(){
+
+        }
     </script>
 @endsection
 
