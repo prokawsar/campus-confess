@@ -17,7 +17,7 @@
                         <tr>
                             <td><strong>  </strong><br/> <p>{{$posts->posts}} on {{$posts->created_at}}</p></td>
 
-                            <td> <a href="{{url('deletePost/'.$posts->id)}}" class="btn btn-danger">Remove this post</a></td>
+                            <td> <a href="{{url('deletePost/'.$posts->id)}}" class="btn btn-danger"> <i class="fa fa-minus-circle" aria-hidden="true"></i> Remove this post</a></td>
                         </tr>
                         @endforeach
                     </table>

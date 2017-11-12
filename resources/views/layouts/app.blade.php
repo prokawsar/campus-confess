@@ -10,10 +10,12 @@
 
     <title>{{ config('', 'Confesser') }}</title>
 
+    <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
+
     <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-{{--    <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">--}}
+
 </head>
 <body>
     <div id="app">
