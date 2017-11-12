@@ -56,7 +56,7 @@
                                 <div class="panel-body">
                                     <p>{{$posts->posts}}</p>
                                     <div class="well well-sm">
-                                        Like
+                                        <i class="fa fa-thumbs-o-up fa-2x"></i> <strong>Like</strong>
                                     </div>
                                     <input id="comment" placeholder="Write a comment..." type="text" class="form-control" name="comment" >
 

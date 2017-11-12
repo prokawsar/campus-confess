@@ -13,7 +13,8 @@
     <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">    
     
 </head>
 <body>
@@ -56,7 +57,7 @@
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                    {{ Auth::user()->display_name }} <span class="caret"></span>
+                                    <i class="fa fa-user"></i> {{ Auth::user()->display_name }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu">
