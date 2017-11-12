@@ -12,7 +12,7 @@ $(document).on('click','#addPost',function () {
     var _token=$('input[name=_token]').val();
 
     if(posts=='' || user_id==''){
-        $('.validation').text("Empty field not allowed !!");
+        $('.validation').text("Write something !!");
     }else {
 
         $.ajax({
@@ -35,4 +35,68 @@ $(document).on('click','#addPost',function () {
             }
         })
     }
-})
+});
+
+$(document).on('click','#like',function () {
+    var postid = $(this);
+    var userid = $(this);
+    var divId=$(this);
+    // alert(divId.data('id2'));
+
+    $.ajax({
+        type: 'post',
+        url: 'post_like',
+        data: {
+            _token:token,
+            post_id: (postid.data('id')),
+            user_id: (userid.data('id1'))
+        },
+        success: function (response) {
+            console.log(response['message']);
+            $('#like').hide();
+            // $('#dislike').show();
+        },
+
+        error: function (response) {
+            console.log(response['error']);
+        }
+    });
+});
+
+
+$(document).on('click','#dislike',function () {
+
+    var postid = $(this);
+    var userid = $(this);
+
+    $.ajax({
+        type: 'post',
+        url: 'dislike',
+        data: {
+            _token:token,
+            post_id: (postid.data('id')),
+            user_id: (userid.data('id1'))
+        },
+        success: function (response) {
+            console.log(response['data']);
+
+        },
+        error: function (response) {
+            console.log(response['data']);
+        }
+    });
+});
+
+$(document).ready(function () {
+    // setTimeout(function(){ ('#posts'); }, 3000);
+
+    // setInterval(function(){
+    //     $('#postsDiv').load(location.href+ ' #postsDiv');
+    // },3000);
+
+
+});
+
+
+
+

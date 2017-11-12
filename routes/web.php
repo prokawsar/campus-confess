@@ -25,4 +25,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/storePosts','HomeController@storePosts');
 
+Route::post('/post_like','HomeController@post_like');
+Route::post('/dislike','HomeController@dislike');
+
 Route::get('deletePost/{id}','HomeController@deletePost');

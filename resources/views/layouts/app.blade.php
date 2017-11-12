@@ -10,11 +10,16 @@
 
     <title>{{ config('', 'Confesser') }}</title>
 
-    <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
+
 
     <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+{{--    <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">--}}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
 
 </head>
 <body>
@@ -43,7 +48,7 @@
                          @if (Auth::user())
                          <li class="nav-item">
                             <a class="nav-link" href="{{ route('myconfess') }}">My Confess</a> 
-                            <!-- have to add myconfess route -->
+                    
                         </li>
                         @endif
                     </ul>

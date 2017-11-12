@@ -44,14 +44,63 @@
         <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">Recent posts</div>
-                <div class="panel-body">
-                    <table id="postsTable">
-                        @foreach($allPosts as $posts)
-                        <tr>
-                            <td><strong>Posted by <i class="fa fa-user" aria-hidden="true"></i>{{$posts->user->display_name}}  </strong><br/> <p>{{$posts->posts}}</p></td>
-                        </tr>
-                        @endforeach
-                    </table>
+                <div id="postsTable" class="panel-body">
+
+                    @php
+                        $i=1;
+                    @endphp
+
+                    @foreach($allPosts as $posts)
+
+
+
+                    <div class="row" id="postsDiv">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="panel panel-default">
+                                <div class="panel-heading"><strong>Posted by <img src="{{asset('img/p_logo.jpg')}}" alt="profile">{{$posts->user->display_name}} &nbsp</strong>
+                                 {{$posts->created_at->diffForHumans()}} 
+                                </div>
+                                <div class="panel-body">
+                                    <div class="well well-sm">
+                                    <p>{{$posts->posts}}</p>
+                                    </div>
+
+                                    {{--<div class="well well-sm" id="reload">--}}
+                                        @php
+                                            $count=\App\Like_Post::where('post_id',$posts->id)->count();
+                                        @endphp
+
+                                        @if($count==1)
+
+                                            {{$count." Like "}}
+
+                                        @elseif ($count==0)
+
+
+                                        @else
+                                            {{$count." Likes "}}
+                                        @endif
+
+                                        @if(Auth::user()->likepost()->where(['post_id' => $posts->id])->get()->count()==0)
+
+                                            <a style="cursor: pointer;text-decoration: none;color: #040b02" id="like"  title="Like it" data-id="{{$posts->id}}" data-id1="{{\Illuminate\Support\Facades\Auth::id()}}"><i class="fa fa-thumbs-up fa-lg"></i></a>
+
+                                        @else
+
+                                        <a style="cursor: pointer" title="Unlike"  id="dislike" data-id="{{$posts->id}}" data-id1="{{\Illuminate\Support\Facades\Auth::id()}}"><i class="fa fa-thumbs-up fa-lg"></i></a>
+
+                                        @endif
+                                    {{--</div>--}}
+                                    <form action="">
+                                        <input id="comment" placeholder="Write a comment..." type="text" class="form-control" name="comment" >
+                                    </form>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                   
                     {{$allPosts->links()}}
 
                 </div>
@@ -63,6 +112,10 @@
 @endsection
 
 @section('script')
+
     <script src="{{asset('js/Posts.js')}}"></script>
+    <script>
+        var token='{{\Illuminate\Support\Facades\Session::token()}}';
+    </script>
 @endsection
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserPostsTable extends Migration
+class CreateLikePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateUserPostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_posts', function (Blueprint $table) {
+        Schema::create('like__posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('posts');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->softDeletes();
+
+            $table->integer('post_id')->unsigned();
+            $table->foreign('post_id')->references('id')->on('user_posts');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateUserPostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_posts');
+        Schema::dropIfExists('like__posts');
     }
 }
