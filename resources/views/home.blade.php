@@ -62,7 +62,11 @@
                                 </div>
                                 <div class="panel-body">
                                     <div class="well well-sm">
+<<<<<<< HEAD
                                     <p>{{$posts->posts}}</p>
+=======
+                                        <i class="fa fa-thumbs-o-up fa-2x"></i> <strong>Like</strong>
+>>>>>>> a2d44471eee97a9bbdb05b4ce133d17d143c9454
                                     </div>
 
                                     {{--<div class="well well-sm" id="reload">--}}

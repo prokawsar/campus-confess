@@ -17,3 +17,8 @@ Users can delete their posts
 11-11-17
 Beautify home feed and time.
 
+--------------------------------------
+12-11-17
+Configured laravel echo and pusher
+Need to create events and broadcaster
+

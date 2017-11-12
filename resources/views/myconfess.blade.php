@@ -15,7 +15,7 @@
                     <table class="table table-hover">
                         @foreach($myPosts as $posts)
                         <tr class="">
-                            <td><br/> <p>{{$posts->posts}} <br/> on {{$posts->created_at->diffForHumans()}}</p></td>
+                            <td><br/><p><i class="fa fa-arrows-alt"></i>  {{$posts->posts}} <br/> on {{$posts->created_at->diffForHumans()}}</p></td>
 
                             <td> <a href="{{url('deletePost/'.$posts->id)}}" class="btn btn-danger"> <i class="fa fa-minus-circle" aria-hidden="true"></i> Remove this post</a></td>
                         </tr>
