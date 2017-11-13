@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/myconfess', 'HomeController@myConfess')->name('myconfess');
+Route::get('/tags', 'HomeController@tags')->name('tags');
 
 Auth::routes();
 

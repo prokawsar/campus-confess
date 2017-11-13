@@ -1,4 +1,6 @@
-@extends('layouts.master')
+@section('title', 'Tags')
+
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -8,7 +10,7 @@
                 <div class="panel-heading">Great!!</div>
 
                 <div class="panel-body">
-                "Hello {{ $name or '' }} You are learning Laravel"
+                    Here will be all tags with posts link
                 </div>
             </div>
         </div>

@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('', 'Confesser') }}</title>
+    <title>@yield('title') | Confesser</title>
 
 
 
@@ -46,10 +46,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                          @if (Auth::user())
-                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('myconfess') }}">My Confess</a> 
-                    
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('tags') }}">Tags</a> 
+                        
+                            </li>
                         @endif
                     </ul>
                
@@ -77,6 +77,10 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('myconfess') }}">My Confess</a> 
+                            
+                                </li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -98,6 +102,19 @@
 
         @yield('content')
     </div>
+
+<div id="footer">
+  <div class="container">
+    <p class="text-muted credit">Website built with <a href="http://laravel.com" target="_blank">Laravel</a> | <a href="/about">About</a>
+    <span class="pull-right">
+        <a target="_blank" href="#" title="Follow updates"><i class="fa fa-twitter fa-lg"></i></a>
+        |
+        <a target="_blank" href="#" title="Get the source of this site"><i class="fa fa-github fa-lg"></i></a>
+    </span>
+    </p>
+
+  </div>
+</div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

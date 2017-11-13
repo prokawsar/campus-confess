@@ -1,3 +1,5 @@
+@section('title', 'Home')
+
 @extends('layouts.app')
 
 @section('content')
@@ -27,8 +29,12 @@
                                         <textarea name="posts" id="posts" cols="10" rows="5" class="form-control"></textarea>
                                     </div>
 
-                                    <div class="form-group pull-right">
-                                        <input type="button" class="btn btn-success" value="Post" id="addPost">
+                                    <div class="form-group">
+                                        <div class="form-group pull-left">
+                                            <input type="text" class="form-control" placeholder="Tags" id="tags" name="tags">
+                                        </div>
+
+                                        <input type="button" class="btn btn-success pull-right" value="Post" id="addPost">
                                     </div>
                                 </fieldset>
                             </form>
