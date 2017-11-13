@@ -15,6 +15,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// this route saves comment in db
+Route::post('/{id}/comments', [
+    'as' => 'comments.create',
+    function ($id, \Illuminate\Http\Request $request) {
+        $post = \App\UserPost::findOrFail($id);
+        $comment = new \App\Comment([
+            'comment'  => $request->input('comment'),
+            'user_id'  => \Auth::user()->id,
+            'post_id' => $id,
+        ]);
+        $comment->save();
+        
+        broadcast(new \App\Events\UserComment($comment))->toOthers();
+
+        return $comment;
+    },
+]);
+
+
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');

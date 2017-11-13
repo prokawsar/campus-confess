@@ -21,4 +21,9 @@ class UserPost extends Model
         return $this->hasMany(Like_Post::class);
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
 }
