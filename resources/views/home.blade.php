@@ -33,7 +33,7 @@
                                         <div class="form-group pull-left">
                                             <input type="text" class="form-control" placeholder="Tags" id="tags" name="tags">
                                         </div>
-
+                                        
                                         <input type="button" class="btn btn-success pull-right" value="Post" id="addPost">
                                     </div>
                                 </fieldset>
@@ -63,21 +63,18 @@
                                  {{$posts->created_at->diffForHumans()}} 
                                 </div>
                                 <div class="panel-body"  id="postDiv">
-                                    <div class="well well-sm">
-                                    <p>{{$posts->posts}}</p>
+                                    <blockquote>
+                                        <p>{{$posts->posts}}</p>
 
+                                    </blockquote>
 
-
-                                    </div>
-
-                                    <div class="comments">
-                                        <p>hello</p>
-
-                                    </div>
+                              
 
                                     <div id="reload{{$posts->id}}">
 
-                                        <span id="{{ $posts->id }}areaDefine">
+                                        <!-- counting likes -->
+                                        
+                                    <span id="{{ $posts->id }}areaDefine">
                                              @php
                                                  $count=\App\Like_Post::where('post_id',$posts->id)->count();
                                              @endphp
@@ -104,22 +101,11 @@
                                             </div>
 
                                         @endif
-
                                         </span>
 
-
-                                        <div  id="commentArea{{$posts->id}}" data-id="{{$posts->id}}"  data-id1="{{\Illuminate\Support\Facades\Auth::id()}}">
-
-                                            <textarea onkeyup="increaseHeight(this);" id="{{$posts->id}}comment" placeholder="Write a comment..." type="text" class="form-control" name="comment"  style="padding-top:10px;"></textarea>
-                                            <a class=" btn btn-primary pull-right" id="commentPostButton{{$posts->id}}" onclick="return postButtonClicked('{{$posts->id}}','{{\Illuminate\Support\Facades\Auth::id()}}')"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Post</a>
-                                            &nbsp;
-                                        </div>
-
-
-
-
+                                       <!-- showing comments -->
                                         @php
-                                            $comments=\App\PostComment::where('post_id',$posts->id)->orderBy('created_at', 'desc')->get();
+                                            $comments=\App\PostComment::where('post_id',$posts->id)->orderBy('created_at', 'asc')->get();
                                         @endphp
 
                                         @if(count($comments)==0)
@@ -127,14 +113,36 @@
                                         @else
 
                                             <label for="" class="label label-primary"> {{count($comments)}} Comments</label>
-                                            <a class="show" data-id="{{$posts->id}}">Show all</a>
+                                            <a href="#" class="show" data-id="{{$posts->id}}">Show all</a>
 
                                         @endif
-                                        @foreach($comments as $cmt)
-                                            <div class="alert alert-success" id="commentsSec{{$posts->id}}" >
-                                                <i   class="fa fa-user-secret fa-2x" aria-hidden="true"></i> said..... {{$cmt->created_at->diffForHumans()}} <br/> {{$cmt->comment}}
+                                        <div class="panel-body" id="commentsSec{{$posts->id}}" >
+                                            
+                                            <div class="@php if(count($comments)!=0) echo 'well well-sm'; @endphp">
+                                            @foreach($comments as $cmt)
+                                            
+                                                <span class="user"> {{Auth::user()->display_name}}</span> <i class="fa fa-terminal"></i>  {{$cmt->comment}} <br/>
+                                                    {{$cmt->created_at->diffForHumans()}} <br/>
+                                                    <hr class="style"></hr>
+                                                
+                                            @endforeach
                                             </div>
-                                        @endforeach
+                                        </div>
+
+                                    
+
+
+                                        <div  id="commentArea{{$posts->id}}" data-id="{{$posts->id}}"  data-id1="{{\Illuminate\Support\Facades\Auth::id()}}">
+
+                                            <textarea onkeyup="increaseHeight(this);" id="{{$posts->id}}comment" placeholder="Write a comment..." type="text" class="form-control" name="comment"  style="padding-top:10px;"></textarea>
+                                            <br/> <a class=" btn btn-primary pull-right" id="commentPostButton{{$posts->id}}" onclick="return postButtonClicked('{{$posts->id}}','{{\Illuminate\Support\Facades\Auth::id()}}')"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> comment</a>
+                                            &nbsp;
+                                        </div>
+
+
+
+
+                                        
                                     </div>
 
 
