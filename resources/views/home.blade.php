@@ -62,36 +62,57 @@
                                     <div class="well well-sm">
                                     <p>{{$posts->posts}}</p>
 
+                                        {{--<a style="cursor: pointer" class="showButton" id="show"><i class="fa fa-plus" aria-hidden="true"></i> View </a>--}}
+                                        {{--<a style="cursor: pointer" class="hideButton"   id="hide{{$posts->id}}"><i class="fa fa-minus-square-o" aria-hidden="true"></i> Hide</a>--}}
 
+                                    </div>
+
+                                    <div class="comments" id="comments{{$posts->id}}">
+                                        <p>hello</p>
                                     </div>
 
                                     <div id="reload">
-                                        @php
-                                            $count=\App\Like_Post::where('post_id',$posts->id)->count();
-                                        @endphp
 
-                                        @if($count==1)
+                                        <span id="{{ $posts->id }}areaDefine">
 
-                                            {{$count." Like "}}
+                                             @php
+                                                 $count=\App\Like_Post::where('post_id',$posts->id)->count();
+                                             @endphp
 
-                                        @elseif ($count==0)
+                                            @if($count==1)
+
+                                                {{$count." Like "}}
+
+                                            @elseif ($count==0)
 
 
-                                        @else
-                                            {{$count." Likes "}}
-                                        @endif
+                                            @else
+                                                {{$count." Likes "}}
+                                            @endif
 
                                         @if(Auth::user()->likepost()->where(['post_id' => $posts->id])->get()->count()==0)
-                                            <a style="cursor: pointer;text-decoration: none;color: #040b02" id="like" onclick="myFunction()"  title="Like it" data-id="{{$posts->id}}" data-id1="{{\Illuminate\Support\Facades\Auth::id()}}"><i class="fa fa-thumbs-up fa-lg"></i></a>
+
+                                            <div id="likeArea" style="width: 2%" data-id="{{$posts->id}}"  data-id1="{{\Illuminate\Support\Facades\Auth::id()}}">
+                                                <a style="cursor: pointer;text-decoration: none;color: #040b02" id="{{ $posts->id }}like"  title="Like it" ><i class="fa fa-thumbs-up fa-lg"></i></a>
+                                            </div>
                                         @else
 
-                                        <a style="cursor: pointer" title="Unlike"  id="dislike" data-id="{{$posts->id}}" data-id1="{{\Illuminate\Support\Facades\Auth::id()}}"><i class="fa fa-thumbs-up fa-lg"></i></a>
+                                            <div id="unlikeArea" style="width: 2%" data-id="{{$posts->id}}" data-id1="{{\Illuminate\Support\Facades\Auth::id()}}">
+                                                <a style="cursor: pointer" title="Unlike"  id="dislike"  ><i class="fa fa-thumbs-down fa-lg"></i></a>
+                                            </div>
 
                                         @endif
+                                        </span>
                                     </div>
-                                    <form action="">
-                                        <input id="comment" placeholder="Write a comment..." type="text" class="form-control" name="comment" >
-                                    </form>
+
+                                    <span id="{{$posts->id}}commentArea" data-id="{{$posts->id}}"  data-id1="{{\Illuminate\Support\Facades\Auth::id()}}">
+
+                                        <input id="{{$posts->id}}comment" placeholder="Write a comment..." type="text" class="form-control" name="comment" onclick="submit()">
+
+                                    </span>
+
+
+
                                 </div>
                                 
                             </div>

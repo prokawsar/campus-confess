@@ -15,18 +15,24 @@
     <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-<<<<<<< HEAD
+
 {{--    <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">--}}
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 
-{{--=======--}}
+
     <!-- <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}"> -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        .likeclicked{
+            color:red
+        }
+    </style>
     
-{{-->>>>>>> a2d44471eee97a9bbdb05b4ce133d17d143c9454--}}
+
 </head>
 <body>
     <div id="app">
