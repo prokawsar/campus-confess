@@ -1,3 +1,5 @@
+@section('title', 'My Confess')
+
 @extends('layouts.app')
 
 @section('content')

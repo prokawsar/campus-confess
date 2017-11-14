@@ -1,3 +1,5 @@
+@section('title', 'Home')
+
 @extends('layouts.app')
 
 @section('content')
@@ -27,8 +29,12 @@
                                         <textarea name="posts" id="posts" cols="10" rows="5" class="form-control"></textarea>
                                     </div>
 
-                                    <div class="form-group pull-right">
-                                        <input type="button" class="btn btn-success" value="Post" id="addPost">
+                                    <div class="form-group">
+                                        <div class="form-group pull-left">
+                                            <input type="text" class="form-control" placeholder="Tags" id="tags" name="tags">
+                                        </div>
+
+                                        <input type="button" class="btn btn-success pull-right" value="Post" id="addPost">
                                     </div>
                                 </fieldset>
                             </form>
@@ -43,7 +49,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-primary">
-                <div class="panel-heading">Recent posts</div>
+                <div class="panel-heading">Confess from (University Name)</div>
                 <div id="postsTable" class="panel-body">
 
                     @php
@@ -62,6 +68,7 @@
                                     <div class="well well-sm">
                                     <p>{{$posts->posts}}</p>
 
+
                                         {{--<a style="cursor: pointer" class="showButton" id="show"><i class="fa fa-plus" aria-hidden="true"></i> View </a>--}}
                                         {{--<a style="cursor: pointer" class="hideButton"   id="hide{{$posts->id}}"><i class="fa fa-minus-square-o" aria-hidden="true"></i> Hide</a>--}}
 
@@ -69,6 +76,7 @@
 
                                     <div class="comments" id="comments{{$posts->id}}">
                                         <p>hello</p>
+
                                     </div>
 
                                     <div id="reload">
@@ -102,6 +110,7 @@
                                             </div>
 
                                         @endif
+
                                         </span>
                                     </div>
 
@@ -111,7 +120,10 @@
 
                                     </span>
 
-
+                                    {{--</div>--}}
+                                    <form action="">
+                                        <textarea onkeyup="increaseHeight(this);" id="comment" placeholder="Write a comment..." type="text" class="form-control" name="comment" style="padding-top:10px;"></textarea>
+                                    </form>
 
                                 </div>
                                 
@@ -133,9 +145,16 @@
 @section('script')
 
     <script src="{{asset('js/Posts.js')}}"></script>
+
     <script>
 
         var token='{{\Illuminate\Support\Facades\Session::token()}}';
+
+        function increaseHeight(e){
+            e.style.height = 'auto';
+            var newHeight = (e.scrollHeight > 32 ? e.scrollHeight : 32);
+            e.style.height = newHeight.toString() + 'px';
+        }  
 
     </script>
 @endsection

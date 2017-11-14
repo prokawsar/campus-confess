@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('', 'Confesser') }}</title>
+    <title>@yield('title') | Confesser</title>
 
 
 
@@ -16,9 +16,12 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+
+
 {{--    <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">--}}
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 
 
@@ -31,7 +34,6 @@
             color:red
         }
     </style>
-    
 
 </head>
 <body>
@@ -58,13 +60,24 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                          @if (Auth::user())
-                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('myconfess') }}">My Confess</a> 
-                    
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('tags') }}">Tags</a> 
+                        
+                            </li>
                         @endif
                     </ul>
-
+               
+                    <form class="nav navbar-nav navbar-form" id="navBarSearch" role="search">
+                        <div class="form-group">
+                            <div style="display:table;" class="input-group">
+                                <input type="text" class="form-control" placeholder="Search any word...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-green" type="button"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
@@ -78,6 +91,10 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('myconfess') }}">My Confess</a> 
+                            
+                                </li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -100,9 +117,21 @@
         @yield('content')
     </div>
 
+<div id="footer">
+  <div class="container">
+    <p class="text-muted credit">Website built with <a href="http://laravel.com" target="_blank">Laravel</a> | <a href="/about">About</a>
+    <span class="pull-right">
+        <a target="_blank" href="#" title="Follow updates"><i class="fa fa-twitter fa-lg"></i></a>
+        |
+        <a target="_blank" href="#" title="Get the source of this site"><i class="fa fa-github fa-lg"></i></a>
+    </span>
+    </p>
+
+  </div>
+</div>
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/dots.js') }}"></script>
     @yield('script')
 </body>
 </html>

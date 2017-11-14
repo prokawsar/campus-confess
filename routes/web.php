@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\UserComment;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +20,11 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/myconfess', 'HomeController@myConfess')->name('myconfess');
+Route::get('/tags', 'HomeController@tags')->name('tags');
+
+Route::get('/comment', function(){
+    event(new UserComment());
+});
 
 Auth::routes();
 

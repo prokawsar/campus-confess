@@ -37,6 +37,7 @@ $(document).on('click','#addPost',function () {
     }
 });
 
+
 $(document).on('click','#likeArea',function () {
     var postid = $(this).data('id');
     var userid = $(this).data('id1');
@@ -49,15 +50,8 @@ $(document).on('click','#likeArea',function () {
     // $('#'+postid+'like').attr("class","btn btn-danger");
 
 
-
-
     // var id = elements[0].getAttribute('id');
     // alert(id);
-
-    // alert(divId.data('id2'));
-    // document.getElementById('#'+postid+'-like').load(location.href + " #"+postid+'-like');
-
-
 
     $.ajax({
         type: 'post',
@@ -68,17 +62,30 @@ $(document).on('click','#likeArea',function () {
             user_id: userid
         },
         success: function (response) {
-            console.log(response['message']);
+            // console.log(response['message']);
             $('#'+postid+'areaDefine').load(location.href+ ' #'+postid+'areaDefine');
-            // location.reload();
-
         },
 
         error: function (response) {
             console.log(response['error']);
         }
     });
+
 });
+
+//
+// $(document).on('click','#like',function () {
+//     var postid = $(this);
+//     var userid = $(this);
+//     var divId = $(this);
+//
+//     // alert(divId.data('id2'));
+//     // document.getElementById('#'+postid+'-like').load(location.href + " #"+postid+'-like');
+//
+//
+//
+//
+// });
 
 
 $(document).on('click','#unlikeArea',function () {
@@ -94,8 +101,10 @@ $(document).on('click','#unlikeArea',function () {
             user_id: userid
         },
         success: function (response) {
-            console.log(response['data']);
+            // console.log(response['data']);
+
             $('#'+postid+'areaDefine').load(location.href+ ' #'+postid+'areaDefine');
+
         },
         error: function (response) {
             console.log(response['data']);
@@ -139,6 +148,7 @@ $(document).ready(function(){
 
 
 });
+
 
 
 function submit()
