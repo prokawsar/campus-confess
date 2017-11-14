@@ -37,5 +37,6 @@ Route::post('/storePosts','HomeController@storePosts');
 
 Route::post('/post_like','HomeController@post_like');
 Route::post('/dislike','HomeController@dislike');
+Route::post('/postComment','HomeController@postComment');
 
 Route::get('deletePost/{id}','HomeController@deletePost');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Like_Post;
+use App\PostComment;
 use App\User;
 use App\UserPost;
 use Illuminate\Http\Request;
@@ -104,5 +105,17 @@ class HomeController extends Controller
         ]);
 
 //
+    }
+    public function postComment(Request $request){
+
+        $postComment=new PostComment();
+
+        $post_id=$request['post_id'];
+        $comment=$request['comment'];
+
+        $postComment->post_id=$post_id;
+        $postComment->comment=$comment;
+        $postComment->save();
+
     }
 }

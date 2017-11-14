@@ -52,13 +52,11 @@
                 <div class="panel-heading">Confess from (University Name)</div>
                 <div id="postsTable" class="panel-body">
 
-                    @php
-                        $i=1;
-                    @endphp
+
 
                     @foreach($allPosts as $posts)
 
-                    <div class="row">
+                    <div class="row" id="eachPost{{$posts->id}}">
                         <div class="col-md-8 col-md-offset-2">
                             <div class="panel panel-default">
                                 <div class="panel-heading"><strong>Posted by <img src="{{asset('img/p_logo.jpg')}}" alt="profile">{{$posts->user->display_name}} &nbsp</strong>
@@ -69,20 +67,17 @@
                                     <p>{{$posts->posts}}</p>
 
 
-                                        {{--<a style="cursor: pointer" class="showButton" id="show"><i class="fa fa-plus" aria-hidden="true"></i> View </a>--}}
-                                        {{--<a style="cursor: pointer" class="hideButton"   id="hide{{$posts->id}}"><i class="fa fa-minus-square-o" aria-hidden="true"></i> Hide</a>--}}
 
                                     </div>
 
-                                    <div class="comments" id="comments{{$posts->id}}">
+                                    <div class="comments">
                                         <p>hello</p>
 
                                     </div>
 
-                                    <div id="reload">
+                                    <div id="reload{{$posts->id}}">
 
                                         <span id="{{ $posts->id }}areaDefine">
-
                                              @php
                                                  $count=\App\Like_Post::where('post_id',$posts->id)->count();
                                              @endphp
@@ -92,7 +87,6 @@
                                                 {{$count." Like "}}
 
                                             @elseif ($count==0)
-
 
                                             @else
                                                 {{$count." Likes "}}
@@ -112,21 +106,50 @@
                                         @endif
 
                                         </span>
+
+
+                                        <div  id="commentArea{{$posts->id}}" data-id="{{$posts->id}}"  data-id1="{{\Illuminate\Support\Facades\Auth::id()}}">
+
+                                            <textarea onkeyup="increaseHeight(this);" id="{{$posts->id}}comment" placeholder="Write a comment..." type="text" class="form-control" name="comment"  style="padding-top:10px;"></textarea>
+                                            <a class=" btn btn-primary pull-right" id="commentPostButton{{$posts->id}}" onclick="return postButtonClicked('{{$posts->id}}','{{\Illuminate\Support\Facades\Auth::id()}}')"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Post</a>
+                                            &nbsp;
+                                        </div>
+
+
+
+
+                                        @php
+                                            $comments=\App\PostComment::where('post_id',$posts->id)->orderBy('created_at', 'desc')->get();
+                                        @endphp
+
+                                        @if(count($comments)==0)
+                                            <label for="" class="label label-default"> {{count($comments)}} Comment</label>
+                                        @else
+
+                                            <label for="" class="label label-primary"> {{count($comments)}} Comments</label>
+                                            <a class="show" data-id="{{$posts->id}}">Show all</a>
+
+                                        @endif
+                                        @foreach($comments as $cmt)
+                                            <div class="alert alert-success" id="commentsSec{{$posts->id}}" >
+                                                <i   class="fa fa-user-secret fa-2x" aria-hidden="true"></i> said..... {{$cmt->created_at->diffForHumans()}} <br/> {{$cmt->comment}}
+                                            </div>
+                                        @endforeach
                                     </div>
 
-                                    <span id="{{$posts->id}}commentArea" data-id="{{$posts->id}}"  data-id1="{{\Illuminate\Support\Facades\Auth::id()}}">
 
-                                        <textarea onkeyup="increaseHeight(this);" id="{{$posts->id}}comment" placeholder="Write a comment..." type="text" class="form-control" name="comment" onclick="submit()"  style="padding-top:10px;"></textarea>
 
-                                    </span>
 
                                     {{--</div>--}}
 
                                 </div>
+                            </div>
                                 
                             </div>
                         </div>
-                    </div>
+                    {{--</div>--}}
+
+
                     @endforeach
                    
                     {{$allPosts->links()}}
@@ -144,6 +167,8 @@
     <script src="{{asset('js/Posts.js')}}"></script>
 
     <script>
+
+
 
         var token='{{\Illuminate\Support\Facades\Session::token()}}';
 
