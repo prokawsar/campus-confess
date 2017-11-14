@@ -72,3 +72,5 @@
     </div>
 </div>
 @endsection
+
+@extends('layouts.partials._footer')
