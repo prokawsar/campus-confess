@@ -116,14 +116,11 @@
 
                                     <span id="{{$posts->id}}commentArea" data-id="{{$posts->id}}"  data-id1="{{\Illuminate\Support\Facades\Auth::id()}}">
 
-                                        <input id="{{$posts->id}}comment" placeholder="Write a comment..." type="text" class="form-control" name="comment" onclick="submit()">
+                                        <textarea onkeyup="increaseHeight(this);" id="{{$posts->id}}comment" placeholder="Write a comment..." type="text" class="form-control" name="comment" onclick="submit()"  style="padding-top:10px;"></textarea>
 
                                     </span>
 
                                     {{--</div>--}}
-                                    <form action="">
-                                        <textarea onkeyup="increaseHeight(this);" id="comment" placeholder="Write a comment..." type="text" class="form-control" name="comment" style="padding-top:10px;"></textarea>
-                                    </form>
 
                                 </div>
                                 
