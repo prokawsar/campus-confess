@@ -123,7 +123,7 @@ function postButtonClicked(id){
     var elementId = document.getElementById(id+'comment');
     var comment=elementId.value;
     if(comment==''){
-       alert("Not ");
+       alert("Can't make an empty comment !");
     }else{
 
         $.ajax({
@@ -150,15 +150,3 @@ function postButtonClicked(id){
 $(document).ready(function(){
 
 });
-// $('.show').click(function () {
-//     var id=$(this).data('id');
-//     // alert(id);
-//     // var all = $('#commentsSec'+id).length;
-//
-//     $('#commentsSec'+id).slideDown("slow");
-//
-// });
-
-
-
-

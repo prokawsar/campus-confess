@@ -30,9 +30,6 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <div class="form-group pull-left">
-                                            <input type="text" class="form-control" placeholder="Tags" id="tags" name="tags">
-                                        </div>
                                         
                                         <input type="button" class="btn btn-success pull-right" value="Post" id="addPost">
                                     </div>
@@ -53,7 +50,6 @@
                 <div id="postsTable" class="panel-body">
 
 
-
                     @foreach($allPosts as $posts)
 
                     <div class="row" id="eachPost{{$posts->id}}">
@@ -64,12 +60,12 @@
                                 </div>
                                 <div class="panel-body"  id="postDiv">
                                     <blockquote>
-                                        <p>{{$posts->posts}}</p>
+                                        
+                                        <a class="post_link" href="posts/{{$posts->id}}/show" target="_blank"><p>{{$posts->posts}}</p></a>
 
                                     </blockquote>
 
                               
-
                                     <div id="reload{{$posts->id}}">
 
                                         <!-- counting likes -->
@@ -129,24 +125,15 @@
                                             </div>
                                         </div>
 
-                                    
-
-
+                         
                                         <div  id="commentArea{{$posts->id}}" data-id="{{$posts->id}}"  data-id1="{{\Illuminate\Support\Facades\Auth::id()}}">
 
                                             <textarea onkeyup="increaseHeight(this);" id="{{$posts->id}}comment" placeholder="Write a comment..." type="text" class="form-control" name="comment"  style="padding-top:10px;"></textarea>
                                             <br/> <a class=" btn btn-primary pull-right" id="commentPostButton{{$posts->id}}" onclick="return postButtonClicked('{{$posts->id}}','{{\Illuminate\Support\Facades\Auth::id()}}')"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> comment</a>
                                             &nbsp;
                                         </div>
-
-
-
-
-                                        
+ 
                                     </div>
-
-
-
 
                                     {{--</div>--}}
 
@@ -175,8 +162,6 @@
     <script src="{{asset('js/Posts.js')}}"></script>
 
     <script>
-
-
 
         var token='{{\Illuminate\Support\Facades\Session::token()}}';
 

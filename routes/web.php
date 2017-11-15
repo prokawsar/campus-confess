@@ -26,11 +26,12 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/myconfess', 'HomeController@myConfess')->name('myconfess');
 Route::get('/tags', 'HomeController@tags')->name('tags');
 
+Route::get('/posts/{id}/show', 'SinglePost@show'); // I don't want to pass post id in link
+                                                    // Can we make it with POST request?
+
 Route::get('/comment', function(){
     event(new UserComment());
 });
-
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/storePosts','HomeController@storePosts');
