@@ -56,8 +56,11 @@ class HomeController extends Controller
         return view('tags');
     }
 
-    public function deletePost($id){
-        UserPost::find($id)->delete();
+    public function deletePost(Request $request){
+
+        $userPost=new UserPost();
+
+        UserPost::find($userPost->id=$request->id)->delete();
         return redirect('myconfess')->with('deletePost',"Your confess has been deleted !!");
     }
 

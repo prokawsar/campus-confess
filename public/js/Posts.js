@@ -42,10 +42,9 @@ $(document).on('click','#likeArea',function () {
     var postid = $(this).data('id');
     var userid = $(this).data('id1');
 
-
     $.ajax({
         type: 'post',
-        url: 'post_like',
+        url: '/post_like',
         data: {
             _token:token,
             post_id: postid,
@@ -64,19 +63,7 @@ $(document).on('click','#likeArea',function () {
 
 });
 
-//
-// $(document).on('click','#like',function () {
-//     var postid = $(this);
-//     var userid = $(this);
-//     var divId = $(this);
-//
-//     // alert(divId.data('id2'));
-//     // document.getElementById('#'+postid+'-like').load(location.href + " #"+postid+'-like');
-//
-//
-//
-//
-// });
+
 
 $(document).on('click','#unlikeArea',function () {
     var postid = $(this).data('id');
@@ -84,7 +71,7 @@ $(document).on('click','#unlikeArea',function () {
 
     $.ajax({
         type: 'post',
-        url: 'dislike',
+        url: '/dislike',
         data: {
             _token:token,
             post_id: postid,
@@ -113,11 +100,6 @@ $(document).on('click','#commentArea',function () {
 
 });
 
-// var comment;
-// function onload(id) {
-//     comment = document.getElementById(id+'comment');
-// }
-
 function postButtonClicked(id){
 
     var elementId = document.getElementById(id+'comment');
@@ -129,7 +111,7 @@ function postButtonClicked(id){
         $.ajax({
 
             type:'post',
-            url:'postComment',
+            url:'/postComment',
             data:{
                 _token:token,
                 comment:comment,
@@ -147,6 +129,31 @@ function postButtonClicked(id){
 
 
 
-$(document).ready(function(){
+$(document).on('click','.delete',function(){
+    var id=$(this).data('id');
+    $('#delepostInputField').val(id);
+});
+
+$(document).on('click','.deletePost',function(){
+    // alert($('#delepostInputField').val());
+    if($('#delepostInputField').val()!=''){
+        $.ajax({
+            type:'post',
+            url:'deletePost',
+            data:{
+                _token:token,
+                id:$('#delepostInputField').val()
+            },
+            success:function (response) {
+                $('#myModal').modal('hide');
+                $('#delConfirm').text("Your this post has been removed !!");
+                $('#delConfirm').css('margin-bottom','10px');
+                $('#myConfessTable').load(location.href + ' #myConfessTable');
+            }
+
+        });
+    }
 
 });
+
+

@@ -18,11 +18,14 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <!-- <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}"> -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
 
 </head>
 <body>
+
+
+
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
@@ -100,7 +103,9 @@
             </div>
         </nav>
 
+
         @yield('content')
+
     </div>
 
 <!-- Scripts -->

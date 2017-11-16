@@ -48,8 +48,6 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">Confess from (University Name)</div>
                 <div id="postsTable" class="panel-body">
-
-
                     @foreach($allPosts as $posts)
 
                     <div class="row" id="eachPost{{$posts->id}}">
@@ -66,7 +64,7 @@
                                     </blockquote>
 
                               
-                                    <div id="reload{{$posts->id}}">
+                                    <div id="reload{{$posts->id}}" class="reloadMyWall">
 
                                         <!-- counting likes -->
                                         
@@ -169,7 +167,15 @@
             e.style.height = 'auto';
             var newHeight = (e.scrollHeight > 32 ? e.scrollHeight : 32);
             e.style.height = newHeight.toString() + 'px';
-        }  
+        } ;
+
+        $(document).ready(function () {
+
+//            setInterval(function(){
+//                $('.reloadMyWall').load(location.href + ' .postDiv');
+//            },8000);
+
+        })
 
     </script>
 @endsection

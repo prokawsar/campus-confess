@@ -92,4 +92,7 @@ class SinglePost extends Controller
     {
         //
     }
+
+
+
 }

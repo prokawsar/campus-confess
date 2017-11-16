@@ -109,6 +109,7 @@
     <script src="{{asset('js/html2canvas.js')}}"></script>
     
     <script>
+        var token='{{\Illuminate\Support\Facades\Session::token()}}';
    
        function increaseHeight(e){
             e.style.height = 'auto';
