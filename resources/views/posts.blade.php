@@ -7,12 +7,19 @@
 <div class="container">
 
 @foreach($post as $post)
+    @php $id = $post->id; @endphp
+
     <div class="row" id="eachPost{{$post->id}}">
             <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
+                <div class="panel panel-default" id="content">
                     <div class="panel-heading"><strong>Posted by <img src="{{asset('img/p_logo.jpg')}}" alt="profile">{{ $post->user->display_name }} &nbsp</strong>
                         {{$post->created_at->diffForHumans()}} 
+                            <div class="form-group pull-right">
+                                <a class="btn btn-info" style="cursor: pointer" title="Save this confess as PNG"  id="btnSave"  ><i class="fa fa-camera"></i> Take Screenshot</a>       
+                                <!-- <input type="button" class="btn btn-info" value="Take Screenshot" id="btnSave" title="Save this confess as PNG"> -->
+                            </div>
                     </div>
+                    
                     <div class="panel-body"  id="postDiv">
                         <blockquote>
                             <p>{{$post->posts}}</p>
@@ -99,13 +106,34 @@
 
 @section('script')
     <script src="{{asset('js/Posts.js')}}"></script>
-
+    <script src="{{asset('js/html2canvas.js')}}"></script>
+    
     <script>
-        function increaseHeight(e){
+   
+       function increaseHeight(e){
             e.style.height = 'auto';
             var newHeight = (e.scrollHeight > 32 ? e.scrollHeight : 32);
             e.style.height = newHeight.toString() + 'px';
-        }  
+        } 
+
+        $(function() { 
+            $("#btnSave").click(function() { 
+                html2canvas($("#content"), {
+                    onrendered: function(canvas) {
+                        //theCanvas = canvas;
+                   
+                       canvas.toBlob(function(blob) {
+                            var a = document.createElement('a');
+                        //  window.open(blob, 'file.png');
+                            a.href = window.URL.createObjectURL(blob);
+                            a.download = "Confesser.png";
+                            a.click();
+                            //download(blob, "Dashboard.png"); 
+                        });
+                    }
+                });
+            });
+        });  
 
     </script>
 
