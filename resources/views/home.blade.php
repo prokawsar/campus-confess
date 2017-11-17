@@ -85,12 +85,12 @@
 
                                         @if(Auth::user()->likepost()->where(['post_id' => $posts->id])->get()->count()==0)
 
-                                            <div id="likeArea" style="width: 2%" data-id="{{$posts->id}}"  data-id1="{{\Illuminate\Support\Facades\Auth::id()}}">
+                                            <div id="likeArea" onmousedown="play()" style="width: 2%" data-id="{{$posts->id}}"  data-id1="{{\Illuminate\Support\Facades\Auth::id()}}">
                                                 <a style="cursor: pointer;text-decoration: none;color: #040b02" id="{{ $posts->id }}like"  title="Like it" ><i class="fa fa-thumbs-up fa-lg"></i></a>
                                             </div>
                                         @else
 
-                                            <div id="unlikeArea" style="width: 2%" data-id="{{$posts->id}}" data-id1="{{\Illuminate\Support\Facades\Auth::id()}}">
+                                            <div id="unlikeArea" onmousedown="playDislike()" style="width: 2%" data-id="{{$posts->id}}" data-id1="{{\Illuminate\Support\Facades\Auth::id()}}">
                                                 <a style="cursor: pointer" title="Unlike"  id="dislike"  ><i class="fa fa-thumbs-down fa-lg"></i></a>
                                             </div>
 
@@ -167,7 +167,17 @@
             e.style.height = 'auto';
             var newHeight = (e.scrollHeight > 32 ? e.scrollHeight : 32);
             e.style.height = newHeight.toString() + 'px';
-        } ;
+        };
+     
+        function play(){
+            var audio = new Audio("{{ asset('media/bbm_tone.mp3') }}");
+            audio.play();
+        }
+
+        function playDislike(){
+            var audio = new Audio("{{ asset('media/bbm.mp3') }}");
+            audio.play();
+        }
 
         $(document).ready(function () {
 

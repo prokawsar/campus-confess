@@ -32,7 +32,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $allPosts=UserPost::with('user')->orderBy('created_at', 'DESC')->paginate(100);
+        $allPosts=UserPost::with('user')->orderBy('created_at', 'DESC')->paginate(3); // will make infinite scroll
         return view('home',compact('allPosts'));
     }
 
