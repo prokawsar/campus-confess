@@ -37,19 +37,10 @@ $(document).on('click','#addPost',function () {
     }
 });
 
-<<<<<<< HEAD
-// Like and Unlike function
-
-$(document).on('click','#like',function () {
-    var postid = $(this);
-    var userid = $(this);
-    var divId=$(this);
-=======
 
 $(document).on('click','#likeArea',function () {
     var postid = $(this).data('id');
     var userid = $(this).data('id1');
->>>>>>> master
 
     $.ajax({
         type: 'post',
@@ -60,14 +51,9 @@ $(document).on('click','#likeArea',function () {
             user_id: userid
         },
         success: function (response) {
-<<<<<<< HEAD
-            console.log(response['message']);
-            location.reload();
-=======
             // console.log(response['message']);
             $('#'+postid+'areaDefine').load(location.href+ ' #'+postid+'areaDefine');
             // $('#reload'+postid).load(window.location.href + ' #reload'+postid);
->>>>>>> master
         },
 
         error: function (response) {
