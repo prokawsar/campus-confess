@@ -54,7 +54,7 @@ class SinglePost extends Controller
      */
     public function show($id)
     {
-        $post = UserPost::with('user')->where('id', $id)->get();
+        $post = UserPost::with('user')->where('id', $id)->first();
     //    return json_encode($post);
       return view('posts', compact('post'));
     }
