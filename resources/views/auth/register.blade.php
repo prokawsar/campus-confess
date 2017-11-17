@@ -1,3 +1,5 @@
+@section('title', 'Register')
+
 @extends('layouts.app')
 
 @section('content')
@@ -63,15 +65,27 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="remember" required> I have read <a href="{{ route('terms') }}" target="_blank">Terms and Conditions</a>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary pull-right">
                                     Register
                                 </button>
                             </div>
                         </div>
                     </form>
+                    </div>
                 </div>
             </div>
-        </div>
     </div>
 </div>
 @endsection
+
+@extends('layouts.partials._footer')

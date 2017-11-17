@@ -1,4 +1,6 @@
-@extends('layouts.master')
+@section('title', 'Terms and Conditoins')
+
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -8,10 +10,12 @@
                 <div class="panel-heading">Great!!</div>
 
                 <div class="panel-body">
-                "Hello {{ $name or '' }} You are learning Laravel"
+                    Here will be all Terms and Condition
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
+
+@extends('layouts.partials._footer')

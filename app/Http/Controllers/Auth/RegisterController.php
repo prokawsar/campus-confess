@@ -70,7 +70,7 @@ class RegisterController extends Controller
         
         return User::create([
             'campus' => $data['campus'],
-            'display_name' => 'anonymous_'.strtolower($code),
+            'display_name' => 'Anonymous_'.strtolower($code),
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);

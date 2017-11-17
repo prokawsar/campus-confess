@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\UserComment;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,18 +34,31 @@ Route::post('/{id}/comments', [
     },
 ]);
 
+Route::get('/terms', function() {
+    return view('terms');
+})->name('terms');
 
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/myconfess', 'HomeController@myConfess')->name('myconfess');
+Route::get('/tags', 'HomeController@tags')->name('tags');
 
-Auth::routes();
+Route::get('/posts/{id}/show', 'SinglePost@show'); // I don't want to pass post id in link
+                                                    // Can we make it with POST request?
+
+
+Route::get('/comment', function(){
+    event(new UserComment());
+});
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/storePosts','HomeController@storePosts');
 
+
 Route::post('/post_like','HomeController@post_like');
 Route::post('/dislike','HomeController@dislike');
 
-Route::get('deletePost/{id}','HomeController@deletePost');
+Route::post('/postComment','HomeController@postComment');
+
+Route::post('deletePost','HomeController@deletePost');

@@ -8,14 +8,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('', 'Confesser') }}</title>
+    <title>@yield('title') | Confesser</title>
 
 
 
     <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-{{--    <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">--}}
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -29,6 +28,9 @@
 
 </head>
 <body>
+
+
+
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
@@ -52,10 +54,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                          @if (Auth::user())
-                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('myconfess') }}">My Confess</a> 
-                    
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('tags') }}">Tags</a> 
+                        
+                            </li>
                         @endif
                     </ul>
                
@@ -83,6 +85,10 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('myconfess') }}">My Confess</a> 
+                            
+                                </li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -102,12 +108,13 @@
             </div>
         </nav>
 
+
         @yield('content')
+
     </div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/dots.js') }}"></script>
-    @yield('script')
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}"></script>
+@yield('script')
 </body>
 </html>

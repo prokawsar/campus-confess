@@ -25,6 +25,7 @@ class UserComment implements ShouldBroadcast
         $this->comment = $comment;
     }
 
+
     /**
      * Get the channels the event should broadcast on.
      *
@@ -33,5 +34,6 @@ class UserComment implements ShouldBroadcast
     public function broadcastOn()
     {
         return new PrivateChannel('user-comment'. $this->comment->post_id);
+      //  return new Channel('user-comment');
     }
 }

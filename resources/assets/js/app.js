@@ -18,5 +18,11 @@ window.Vue = require('vue');
 Vue.component('comments', require('./components/user-comment.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    created(){
+        Echo.channel('user-comment')
+        .listen('UserComment', (e) => {
+            alert("Event Running");
+        });
+    }
 });

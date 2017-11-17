@@ -1,3 +1,5 @@
+@section('title', 'Home')
+
 @extends('layouts.app')
 
 @section('content')
@@ -27,8 +29,9 @@
                                         <textarea name="posts" id="posts" cols="10" rows="5" class="form-control"></textarea>
                                     </div>
 
-                                    <div class="form-group pull-right">
-                                        <input type="button" class="btn btn-success" value="Post" id="addPost">
+                                    <div class="form-group">
+                                        
+                                        <input type="button" class="btn btn-success pull-right" value="Post" id="addPost">
                                     </div>
                                 </fieldset>
                             </form>
@@ -45,60 +48,100 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">Confess from (University Name)</div>
                 <div id="postsTable" class="panel-body">
-
-                    @php
-                        $i=1;
-                    @endphp
-
                     @foreach($allPosts as $posts)
 
-
-
-                    <div class="row" id="postsDiv">
+                    <div class="row" id="eachPost{{$posts->id}}">
                         <div class="col-md-8 col-md-offset-2">
                             <div class="panel panel-default">
                                 <div class="panel-heading"><strong>Posted by <img src="{{asset('img/p_logo.jpg')}}" alt="profile">{{$posts->user->display_name}} &nbsp</strong>
                                  {{$posts->created_at->diffForHumans()}} 
                                 </div>
-                                <div class="panel-body">
-                                    <div class="well well-sm">
-                                    <p>{{$posts->posts}}</p>
-                                    </div>
+                                <div class="panel-body"  id="postDiv">
+                                    <blockquote>
+                                        
+                                        <a class="post_link" href="posts/{{$posts->id}}/show" target="_blank"><p>{{$posts->posts}}</p></a>
 
-                                    {{--<div class="well well-sm" id="reload">--}}
-                                        @php
-                                            $count=\App\Like_Post::where('post_id',$posts->id)->count();
-                                        @endphp
+                                    </blockquote>
 
-                                        @if($count==1)
+                              
+                                    <div id="reload{{$posts->id}}" class="reloadMyWall">
 
-                                            {{$count." Like "}}
+                                        <!-- counting likes -->
+                                        
+                                    <span id="{{ $posts->id }}areaDefine">
+                                             @php
+                                                 $count=\App\Like_Post::where('post_id',$posts->id)->count();
+                                             @endphp
 
-                                        @elseif ($count==0)
+                                            @if($count==1)
 
+                                                {{$count." Like "}}
 
-                                        @else
-                                            {{$count." Likes "}}
-                                        @endif
+                                            @elseif ($count==0)
+
+                                            @else
+                                                {{$count." Likes "}}
+                                            @endif
 
                                         @if(Auth::user()->likepost()->where(['post_id' => $posts->id])->get()->count()==0)
 
-                                            <a style="cursor: pointer;text-decoration: none;color: #040b02" id="like"  title="Like it" data-id="{{$posts->id}}" data-id1="{{\Illuminate\Support\Facades\Auth::id()}}"><i class="fa fa-thumbs-up fa-lg"></i></a>
-
+                                            <div id="likeArea" onmousedown="play()" style="width: 2%" data-id="{{$posts->id}}"  data-id1="{{\Illuminate\Support\Facades\Auth::id()}}">
+                                                <a style="cursor: pointer;text-decoration: none;color: #040b02" id="{{ $posts->id }}like"  title="Like it" ><i class="fa fa-thumbs-up fa-lg"></i></a>
+                                            </div>
                                         @else
 
-                                        <a style="cursor: pointer" title="Unlike"  id="dislike" data-id="{{$posts->id}}" data-id1="{{\Illuminate\Support\Facades\Auth::id()}}"><i class="fa fa-thumbs-up fa-lg"></i></a>
+                                            <div id="unlikeArea" onmousedown="playDislike()" style="width: 2%" data-id="{{$posts->id}}" data-id1="{{\Illuminate\Support\Facades\Auth::id()}}">
+                                                <a style="cursor: pointer" title="Unlike"  id="dislike"  ><i class="fa fa-thumbs-down fa-lg"></i></a>
+                                            </div>
 
                                         @endif
+                                        </span>
+
+                                       <!-- showing comments -->
+                                        @php
+                                            $comments=\App\PostComment::where('post_id',$posts->id)->orderBy('created_at', 'asc')->get();
+                                        @endphp
+
+                                        @if(count($comments)==0)
+                                            <label for="" class="label label-default"> {{count($comments)}} Comment</label>
+                                        @else
+
+                                            <label for="" class="label label-primary"> {{count($comments)}} Comments</label>
+                                            <a href="#" class="show" data-id="{{$posts->id}}">Show all</a>
+
+                                        @endif
+                                        <div class="panel-body" id="commentsSec{{$posts->id}}" >
+                                            
+                                            <div class="@php if(count($comments)!=0) echo 'well well-sm'; @endphp">
+                                            @foreach($comments as $cmt)
+                                            
+                                                <span class="user"> {{Auth::user()->display_name}}</span> <i class="fa fa-terminal"></i>  {{$cmt->comment}} <br/>
+                                                    {{$cmt->created_at->diffForHumans()}} <br/>
+                                                    <hr class="style"></hr>
+                                                
+                                            @endforeach
+                                            </div>
+                                        </div>
+
+                         
+                                        <div  id="commentArea{{$posts->id}}" data-id="{{$posts->id}}"  data-id1="{{\Illuminate\Support\Facades\Auth::id()}}">
+
+                                            <textarea onkeyup="increaseHeight(this);" id="{{$posts->id}}comment" placeholder="Write a comment..." type="text" class="form-control" name="comment"  style="padding-top:10px;"></textarea>
+                                            <br/> <a class=" btn btn-primary pull-right" id="commentPostButton{{$posts->id}}" onclick="return postButtonClicked('{{$posts->id}}','{{\Illuminate\Support\Facades\Auth::id()}}')"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> comment</a>
+                                            &nbsp;
+                                        </div>
+ 
+                                    </div>
+
                                     {{--</div>--}}
-                                    <form action="">
-                                        <textarea onkeyup="increaseHeight(this);" id="comment" placeholder="Write a comment..." type="text" class="form-control" name="comment" ></textarea>
-                                    </form>
                                 </div>
+                            </div>
                                 
                             </div>
                         </div>
-                    </div>
+                    {{--</div>--}}
+
+
                     @endforeach
                    
                     {{$allPosts->links()}}
@@ -116,13 +159,32 @@
     <script src="{{asset('js/Posts.js')}}"></script>
 
     <script>
+
         var token='{{\Illuminate\Support\Facades\Session::token()}}';
-        
         function increaseHeight(e){
             e.style.height = 'auto';
             var newHeight = (e.scrollHeight > 32 ? e.scrollHeight : 32);
             e.style.height = newHeight.toString() + 'px';
-        }  
+        };
+     
+        function play(){
+            var audio = new Audio("{{ asset('media/bbm_tone.mp3') }}");
+            audio.play();
+        }
+
+        function playDislike(){
+            var audio = new Audio("{{ asset('media/bbm.mp3') }}");
+            audio.play();
+        }
+
+        $(document).ready(function () {
+
+//            setInterval(function(){
+//                $('.reloadMyWall').load(location.href + ' .postDiv');
+//            },8000);
+
+        })
+
     </script>
 @endsection
 

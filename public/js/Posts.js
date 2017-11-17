@@ -37,53 +37,137 @@ $(document).on('click','#addPost',function () {
     }
 });
 
+<<<<<<< HEAD
 // Like and Unlike function
 
 $(document).on('click','#like',function () {
     var postid = $(this);
     var userid = $(this);
     var divId=$(this);
+=======
+
+$(document).on('click','#likeArea',function () {
+    var postid = $(this).data('id');
+    var userid = $(this).data('id1');
+>>>>>>> master
 
     $.ajax({
         type: 'post',
-        url: 'post_like',
+        url: '/post_like',
         data: {
             _token:token,
-            post_id: (postid.data('id')),
-            user_id: (userid.data('id1'))
+            post_id: postid,
+            user_id: userid
         },
         success: function (response) {
+<<<<<<< HEAD
             console.log(response['message']);
             location.reload();
+=======
+            // console.log(response['message']);
+            $('#'+postid+'areaDefine').load(location.href+ ' #'+postid+'areaDefine');
+            // $('#reload'+postid).load(window.location.href + ' #reload'+postid);
+>>>>>>> master
         },
 
         error: function (response) {
             console.log(response['error']);
         }
     });
+
 });
 
 
-$(document).on('click','#dislike',function () {
 
-    var postid = $(this);
-    var userid = $(this);
+$(document).on('click','#unlikeArea',function () {
+    var postid = $(this).data('id');
+    var userid = $(this).data('id1');
 
     $.ajax({
         type: 'post',
-        url: 'dislike',
+        url: '/dislike',
         data: {
             _token:token,
-            post_id: (postid.data('id')),
-            user_id: (userid.data('id1'))
+            post_id: postid,
+            user_id: userid
         },
         success: function (response) {
-            console.log(response['data']);
-            location.reload();
+            // console.log(response['data']);
 
+            $('#'+postid+'areaDefine').load(location.href+ ' #'+postid+'areaDefine');
+            // $('#reload'+postid).load(window.location.href + ' #reload'+postid);
         },
         error: function (response) {
             console.log(response['data']);
         }
     });
+
 });
+
+$(document).on('click','#commentArea',function () {
+    // alert("ok");
+    // var comment=$('#comment').val();
+    // alert(comment);
+    var postid = $(this).data('id');
+    var userid = $(this).data('id1');
+
+
+});
+
+function postButtonClicked(id){
+
+    var elementId = document.getElementById(id+'comment');
+    var comment=elementId.value;
+    if(comment==''){
+       alert("Can't make an empty comment !");
+    }else{
+
+        $.ajax({
+
+            type:'post',
+            url:'/postComment',
+            data:{
+                _token:token,
+                comment:comment,
+                post_id:id
+            },
+            success:function (data) {
+
+            }
+        });
+
+        $('#reload'+id).load(window.location.href + ' #reload'+id);
+
+    }
+}
+
+
+
+$(document).on('click','.delete',function(){
+    var id=$(this).data('id');
+    $('#delepostInputField').val(id);
+});
+
+$(document).on('click','.deletePost',function(){
+    // alert($('#delepostInputField').val());
+    if($('#delepostInputField').val()!=''){
+        $.ajax({
+            type:'post',
+            url:'deletePost',
+            data:{
+                _token:token,
+                id:$('#delepostInputField').val()
+            },
+            success:function (response) {
+                $('#myModal').modal('hide');
+                $('#delConfirm').text("Your this post has been removed !!");
+                $('#delConfirm').css('margin-bottom','10px');
+                $('#myConfessTable').load(location.href + ' #myConfessTable');
+            }
+
+        });
+    }
+
+});
+
+

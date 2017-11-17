@@ -1,3 +1,5 @@
+@section('title', 'Login')
+
 @extends('layouts.app')
 
 @section('content')
@@ -70,3 +72,5 @@
     </div>
 </div>
 @endsection
+
+@extends('layouts.partials._footer')

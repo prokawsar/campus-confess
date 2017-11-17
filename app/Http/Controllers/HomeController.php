@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Like_Post;
+use App\PostComment;
 use App\User;
 use App\UserPost;
 use Illuminate\Http\Request;
@@ -31,7 +32,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $allPosts=UserPost::with('user')->orderBy('created_at', 'DESC')->paginate(100);
+        $allPosts=UserPost::with('user')->orderBy('created_at', 'DESC')->paginate(3); // will make infinite scroll
         return view('home',compact('allPosts'));
     }
 
@@ -51,8 +52,15 @@ class HomeController extends Controller
         return view('myconfess', compact('myPosts'));
     }
 
-    public function deletePost($id){
-        UserPost::find($id)->delete();
+    public function tags(){
+        return view('tags');
+    }
+
+    public function deletePost(Request $request){
+
+        $userPost=new UserPost();
+
+        UserPost::find($userPost->id=$request->id)->delete();
         return redirect('myconfess')->with('deletePost',"Your confess has been deleted !!");
     }
 
@@ -100,5 +108,17 @@ class HomeController extends Controller
         ]);
 
 //
+    }
+    public function postComment(Request $request){
+
+        $postComment=new PostComment();
+
+        $post_id=$request['post_id'];
+        $comment=$request['comment'];
+
+        $postComment->post_id=$post_id;
+        $postComment->comment=$comment;
+        $postComment->save();
+
     }
 }
