@@ -115,22 +115,37 @@
                                             <div class="@php if(count($comments)!=0) echo 'well well-sm'; @endphp">
                                             <!-- comment section -->
                                             
-                                            @foreach($comments as $cmt)
+                                            <!-- @foreach($comments as $cmt)
                                             
                                                 <span class="user"> {{Auth::user()->display_name}}</span> <i class="fa fa-terminal"></i>  {{$cmt->comment}} <br/>
                                                     {{$cmt->created_at->diffForHumans()}} <br/>
                                                     <hr class="style"></hr>
                                                 
-                                            @endforeach
+                                            @endforeach -->
+                                            <user-comment 
+                                                    v-for="value in chat.message"
+                                                    :key=this.index
+                                                   
+                                                    >
+                                                    <span class="user"> {{Auth::user()->display_name}}</span> <i class="fa fa-terminal"></i>   @{{ value }} <br/>
+                                                    1 hour ago <br/>
+                                                    <hr class="style"></hr>
+
+                                                       
+                                            </user-comment>
+                                                    <input type="text" class="form-control" name="" placeholder="Write a comment..." 
+                                                    v-model='message' 
+                                                    @keyup.enter='send'
+                                                    >
                                             </div>
                                         </div>
 
                          
                                         <div  id="commentArea{{$posts->id}}" data-id="{{$posts->id}}"  data-id1="{{\Illuminate\Support\Facades\Auth::id()}}">
 
-                                            <textarea onkeyup="increaseHeight(this);" id="{{$posts->id}}comment" placeholder="Write a comment..." type="text" class="form-control" name="comment"  style="padding-top:10px;"></textarea>
+                                            <!-- <textarea onkeyup="increaseHeight(this);" id="{{$posts->id}}comment" placeholder="Write a comment..." type="text" class="form-control" name="comment"  style="padding-top:10px;"></textarea>
                                             <br/> <a class=" btn btn-primary pull-right" id="commentPostButton{{$posts->id}}" onclick="return postButtonClicked('{{$posts->id}}','{{\Illuminate\Support\Facades\Auth::id()}}')"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> comment</a>
-                                            &nbsp;
+                                            &nbsp; -->
                                         </div>
  
                                     </div>
@@ -178,14 +193,6 @@
             var audio = new Audio("{{ asset('media/bbm.mp3') }}");
             audio.play();
         }
-
-        $(document).ready(function () {
-
-//            setInterval(function(){
-//                $('.reloadMyWall').load(location.href + ' .postDiv');
-//            },8000);
-
-        })
 
     </script>
 @endsection

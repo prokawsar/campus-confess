@@ -3,7 +3,7 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-Vue.component('component', require('./components/user-comment.vue'));
+Vue.component('user-comment', require('./components/user-comment.vue'));
 
 const app = new Vue({
     el: '#app',
