@@ -22,3 +22,7 @@ Beautify home feed and time.
 Configured laravel echo and pusher
 Need to create events and broadcaster
 
+
+19-11-17
+Verification email sending done.
+Need to check verified on login

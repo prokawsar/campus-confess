@@ -20,6 +20,8 @@ Route::get('/terms', function() {
     return view('terms');
 })->name('terms');
 
+Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
+
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
