@@ -113,6 +113,8 @@
                                         <div class="panel-body" id="commentsSec{{$posts->id}}" >
                                             
                                             <div class="@php if(count($comments)!=0) echo 'well well-sm'; @endphp">
+                                            <!-- comment section -->
+                                            
                                             @foreach($comments as $cmt)
                                             
                                                 <span class="user"> {{Auth::user()->display_name}}</span> <i class="fa fa-terminal"></i>  {{$cmt->comment}} <br/>

@@ -1,49 +1,21 @@
 <template>
-    <div class="comments">
-        
-        <div v-for="comment in comments" class="comment">
-            <h5>{{ comment.dispay_name }} said:</h5>
-            <p>{{ comment.comment }}</p>
-        </div>
-
-        <form method="POST" v-on:submit.prevent="submit" :action="post_url">
-            <textarea v-model="new_comment" name="comment" class="form-control" placeholder="New Comment..."></textarea>
-            <input class="btn btn-success" type="submit"/>
-        </form>
-
+    <div>
+        <span class="user"> {{Auth::user()->display_name}}</span> <i class="fa fa-terminal"></i>  {{$cmt->comment}} <br/>
+            {{$cmt->created_at->diffForHumans()}} <br/>
+            <hr class="style"></hr>
     </div>
 </template>
 
 <script>
-    var Vue = require('vue');
+   
     export default {
-        props: ['post_url','comments_url','post_id'],
-        methods: {
-            submit: function(){
-                var self = this;
-                Vue.http.post(this.post_url,{ 'comment':this.new_comment }).then((response) => {
-                    self.new_comment = '';
-                    self.comments.push(response.data);
-                })
+        computed:{
+            className(){
+                return 'list-group-item-'+this.color;
             }
         },
-        data(){
-            return {
-                comments:[],
-                new_comment:''
-            }
-        },
-        mounted(){
-            var self = this;
-            Vue.http.get(this.comments_url).then((response) => {
-                _.forEach(response.data,function(item){
-                    self.comments.push(item);
-                })
-            })
-            Echo.channel('user-comment.'+self.post_id)
-                .listen('UserComment', (e) => {
-                    self.comments.push(e.comment);
-                });
+        mounted() {
+            console.log('Component mounted.')
         }
     }
 </script>
