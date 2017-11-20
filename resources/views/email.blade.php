@@ -6,4 +6,4 @@ Click the following link to verify your email {{url('/verifyemail/'.$email_token
 
 Regards <br />
 CEO <br />
-http://confesser.com <br />
+http://ahamori.me <br />
