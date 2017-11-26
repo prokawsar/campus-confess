@@ -52,8 +52,8 @@ class HomeController extends Controller
         return view('myconfess', compact('myPosts'));
     }
 
-    public function tags(){
-        return view('tags');
+    public function category(){
+        return view('category');
     }
 
     public function deletePost(Request $request){

@@ -28,7 +28,14 @@
                                     <div class="form-group">
                                         <textarea name="posts" id="posts" cols="10" rows="5" class="form-control"></textarea>
                                     </div>
-
+                                    <div class="form-group col-md-3 pull-left">
+                                        <select class="form-control" id="category">
+                                            <option value="2">Category</option>
+                                            <option value="2">Category</option>
+                                            <option value="2">Category</option>
+                                        </select> 
+                                      
+                                    </div>
                                     <div class="form-group">
                                         
                                         <input type="button" class="btn btn-success pull-right" value="Post" id="addPost">
@@ -46,7 +53,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-primary">
-                <div class="panel-heading">Confess from (University Name)</div>
+                <div class="panel-heading">Confess from ( Daffodil International Academy ) </div>
                 <div id="postsTable" class="panel-body">
                     @foreach($allPosts as $posts)
 
@@ -54,7 +61,10 @@
                         <div class="col-md-8 col-md-offset-2">
                             <div class="panel panel-default">
                                 <div class="panel-heading"><strong>Posted by <img src="{{asset('img/p_logo.jpg')}}" alt="profile">{{$posts->user->display_name}} &nbsp</strong>
-                                 {{$posts->created_at->diffForHumans()}} 
+                                 {{$posts->created_at->diffForHumans()}}
+                                 <div class="pull-right">
+                                    [ Category.name ]
+                                </div> 
                                 </div>
                                 <div class="panel-body"  id="postDiv">
                                     <blockquote>

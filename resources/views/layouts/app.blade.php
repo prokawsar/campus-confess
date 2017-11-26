@@ -50,7 +50,7 @@
                     <ul class="nav navbar-nav">
                          @if (Auth::user())
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('tags') }}">Tags</a> 
+                                <a class="nav-link" href="{{ route('category') }}">Category</a> 
                         
                             </li>
                         @endif
