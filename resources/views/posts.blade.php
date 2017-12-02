@@ -6,7 +6,7 @@
 
 <div class="container">
 
-@foreach($post as $post)
+{{--@foreach($post as $post)--}}
     @php $id = $post->id; @endphp
 
     <div class="row" id="eachPost{{$post->id}}">
@@ -99,7 +99,7 @@
                 </div>                                
             </div>
         </div>
-        @endforeach
+        {{--@endforeach--}}
 </div>
 
 @endsection
