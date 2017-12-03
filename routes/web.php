@@ -27,6 +27,7 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/myconfess', 'HomeController@myConfess')->name('myconfess');
 Route::get('/category', 'HomeController@category')->name('category');
+Route::get('/category/{name}', 'CategoryPost@show');
 
 Route::get('/posts/{id}/show', 'SinglePost@show'); // I don't want to pass post id in link
                                                     // Can we make it with POST request?
