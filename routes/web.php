@@ -20,6 +20,10 @@ Route::get('/terms', function() {
     return view('terms');
 })->name('terms');
 
+Route::get('/about', function() {
+    return view('about');
+})->name('about');
+
 Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
 
 Auth::routes();
@@ -32,14 +36,11 @@ Route::get('/category/{name}', 'CategoryPost@show');
 Route::get('/posts/{id}/show', 'SinglePost@show'); // I don't want to pass post id in link
                                                     // Can we make it with POST request?
 
-
 Route::get('/comment', function(){
     event(new UserComment());
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/storePosts','HomeController@storePosts');
-
 
 Route::post('/post_like','HomeController@post_like');
 Route::post('/dislike','HomeController@dislike');
