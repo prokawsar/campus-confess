@@ -20,8 +20,13 @@
                 <div class="panel-body">
                     <table class="table table-hover" id="myConfessTable">
                         @foreach($myPosts as $posts)
+                            @php
+                                $category=\App\PostCategory::find($posts->cat_id);
+                            @endphp
+                        
                         <tr class="">
-                            <td><p><i class="fa fa-arrows-alt"></i>  {{$posts->posts}} <br/> on {{$posts->created_at->diffForHumans()}}</p></td>
+                            <td><p class="header"><i class="fa fa-arrows-alt"></i> {{$posts->posts}}
+                                       <span class="text-primary"> [ {{ $category->cat_name}} ] </span> </p> on {{$posts->created_at->diffForHumans()}}</td>
                             <td><button data-id="{{$posts->id}}" class="btn btn-danger delete" data-toggle="modal" data-target="#myModal"><i class="fa fa-minus-circle" aria-hidden="true"></i> Remove</button></td>
 
                         </tr>

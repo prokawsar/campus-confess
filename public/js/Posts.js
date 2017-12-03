@@ -7,9 +7,10 @@ $(document).ready(function () {
 });
 
 $(document).on('click','#addPost',function () {
-    var posts=$('#posts').val();
-    var user_id=$('#user_id').val();
-    var _token=$('input[name=_token]').val();
+    var posts= $('#posts').val();
+    var user_id= $('#user_id').val();
+    var cat_id= $('#category').val();
+    var _token= $('input[name=_token]').val();
 
     if(posts=='' || user_id==''){
         $('.validation').text("Write something !!");
@@ -21,7 +22,8 @@ $(document).on('click','#addPost',function () {
             data: {
                 _token: _token,
                 posts: posts,
-                user_id: user_id
+                user_id: user_id,
+                cat_id: cat_id
             },
             success: function (response) {
                 $(".postConfirm").show().delay(5000).fadeOut();

@@ -29,7 +29,7 @@ class MailValidation implements Rule
     public function passes($attribute, $value)
     {
         if(!(preg_match('/(.*)daffodil\.ac$/i', $value))){
-            $this->message='The ' .$attribute.' must be in @daffodil.ac. !!';
+            $this->message='The ' .$attribute.' must be in @daffodil.ac !!';
             return false;
         }else {
             return true;

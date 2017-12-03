@@ -40,7 +40,9 @@ class HomeController extends Controller
         $userPost=new UserPost();
         $userPost->posts=$request->posts;
         $userPost->user_id=$request->user_id;
+        $userPost->cat_id=$request->cat_id;        
         $userPost->save();
+
         return response()->json([
             'message'=>'Confess Successful'
         ]);

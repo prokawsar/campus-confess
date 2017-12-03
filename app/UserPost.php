@@ -11,7 +11,7 @@ class UserPost extends Model
     use SoftDeletes;
     protected $dates=['deleted_at'];
 
-    protected $fillable=['posts','user_id'];
+    protected $fillable=['posts','user_id', 'cat_id'];
 
     public function user(){
         return $this->belongsTo(User::class);
@@ -22,6 +22,12 @@ class UserPost extends Model
     }
     public function postcomment(){
         return $this->hasMany(PostComment::class);
+    }
+
+    public function postcategory()
+    {
+        return $this->hasOne(\App\PostCategory::class);
+
     }
 
 }

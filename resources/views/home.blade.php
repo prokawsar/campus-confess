@@ -28,11 +28,17 @@
                                     <div class="form-group">
                                         <textarea name="posts" id="posts" cols="10" rows="5" class="form-control"></textarea>
                                     </div>
+                                    @php
+                                        $categories=\App\PostCategory::all();
+                                    @endphp
                                     <div class="form-group col-md-3 pull-left">
-                                        <select class="form-control" id="category">
-                                            <option value="2">Category</option>
-                                            <option value="2">Category</option>
-                                            <option value="2">Category</option>
+                                        <select class="form-control" name="category" id="category">
+                                            <option value="#">Select a Category</option>
+                                           
+                                            @foreach($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->cat_name }}</option>
+                                           
+                                            @endforeach
                                         </select> 
                                       
                                     </div>
@@ -62,9 +68,15 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading"><strong>Posted by <img src="{{asset('img/p_logo.jpg')}}" alt="profile">{{$posts->user->display_name}} &nbsp</strong>
                                  {{$posts->created_at->diffForHumans()}}
-                                 <div class="pull-right">
-                                    [ Category.name ]
-                                </div> 
+                                    <div class="pull-right">
+                                    <!-- $category = \App\PostCategory::where('id',$posts->cat_id)->select('cat_name')->first(); -->
+                                        
+                                        @php
+                                            $category=\App\PostCategory::find($posts->cat_id);
+                                        @endphp
+                                        
+                                        [ <span class="text-primary"><strong>{{ $category->cat_name}}</strong> </span> ]
+                                    </div> 
                                 </div>
                                 <div class="panel-body"  id="postDiv">
                                     <blockquote>
@@ -188,14 +200,6 @@
             var audio = new Audio("{{ asset('media/bbm.mp3') }}");
             audio.play();
         }
-
-        $(document).ready(function () {
-
-//            setInterval(function(){
-//                $('.reloadMyWall').load(location.href + ' .postDiv');
-//            },8000);
-
-        })
 
     </script>
 @endsection

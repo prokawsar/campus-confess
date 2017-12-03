@@ -6,7 +6,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            
+            @php
+                $categories=\App\PostCategory::orderBy('cat_name')->get();
+            @endphp
+
             <div class="list-group">
                 <a href="#" class="list-group-item active">
                     All Category
@@ -15,19 +18,12 @@
                     </div>
                 </a>
                
-                <a href="#" class="list-group-item">Category 1
-                <span class="badge">1</span>
-                </a>
-                <a href="#" class="list-group-item">Category 2
-                <span class="badge">10</span>
-                </a>
-                
-                <a href="#" class="list-group-item">Category 3
-                <span class="badge">5</span>
-                </a>
-                <a href="#" class="list-group-item">Category 4
-                <span class="badge">14</span>
-                </a>
+                @foreach($categories as $category)
+                    <a href="#" class="list-group-item">{{ $category->cat_name}}
+                    <span class="badge">1</span>
+                    </a>
+                @endforeach
+               
             </div>
 
         </div>
