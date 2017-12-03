@@ -75,7 +75,7 @@
                                             $category=\App\PostCategory::find($posts->cat_id);
                                         @endphp
                                         
-                                        [ <span class="text-primary"><strong>{{ $category->cat_name}}</strong> </span> ]
+                                        [ <span class="badge badge-success"><strong>{{ $category->cat_name}}</strong> </span> ]
                                     </div> 
                                 </div>
                                 <div class="panel-body"  id="postDiv">

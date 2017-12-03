@@ -15,6 +15,7 @@
     <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -50,7 +51,7 @@
                     <ul class="nav navbar-nav">
                          @if (Auth::user())
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('category') }}">Category</a> 
+                                <a class="nav-link" href="{{ route('category') }}">  <i class="fa fa-navicon"></i> Category</a> 
                         
                             </li>
                         @endif
@@ -74,6 +75,10 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"> <i class="fa fa-globe"></i> Notification</a> 
+                        
+                            </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                                     <i class="fa fa-user"></i> {{ Auth::user()->display_name }} <span class="caret"></span>

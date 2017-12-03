@@ -8,6 +8,8 @@
         <div class="col-md-8 col-md-offset-2">
             @php
                 $categories=\App\PostCategory::orderBy('cat_name')->get();
+                $total=\App\PostCategory::post_count(); # Working with raw query
+                
             @endphp
 
             <div class="list-group">
@@ -18,9 +20,10 @@
                     </div>
                 </a>
                
-                @foreach($categories as $category)
-                    <a href="#" class="list-group-item">{{ $category->cat_name}}
-                    <span class="badge">1</span>
+                <!-- ($categories as $category) -->
+                @foreach($total as $card)
+                    <a href="#" class="list-group-item">{{ $card->name}}
+                    <span class="badge badge-success">{{ $card->total_post}}</span>
                     </a>
                 @endforeach
                
