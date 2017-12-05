@@ -1,6 +1,8 @@
 <?php
 
 use App\Events\UserComment;
+use App\UserPost;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,10 +18,11 @@ Route::get('/', function () {
     
     if (Auth::check())
     {
-        
+        $allPosts=UserPost::with('user')->orderBy('created_at', 'DESC')->paginate(5); // will make infinite scroll
+        return view('home', compact('allPosts'));
     }
 
-   return view('welcome');
+    return view('welcome');
 });
 
 Route::get('/terms', function() {
@@ -34,7 +37,7 @@ Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+// Route::get('/', 'HomeController@index')->name('home');
 Route::get('/myconfess', 'HomeController@myConfess')->name('myconfess');
 Route::get('/category', 'HomeController@category')->name('category');
 Route::get('/category/{name}', 'CategoryPost@show');

@@ -29,11 +29,11 @@
 <div class="container">
     <div class="row">
         
-        <a class="btn btn-primary">login </a>
+        <a href="{{ route('login') }}" class="btn btn-primary">login </a>
                        
         <div class="pull-right">
-                <a class="btn btn-primary bottom">Register </a>
-            </div> 
+                <a href="{{ route('register') }}" class="btn btn-primary ">Register </a>
+        </div> 
     </div>
 </div>
 @extends('layouts.partials._footer')

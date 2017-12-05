@@ -31,10 +31,12 @@
                                     </div>
                                     
                                     <div class="form-group col-md-4 pull-left">
-                                        <input name="option" class="form-control" placeholder="Option 1">
-                                        <input name="option" class="form-control" placeholder="Option 2">
-                                        <br />
-                                        <a class="btn btn-primary pull-right"> <i class="fa fa-plus"></i> Add option</a>
+                                        <div id="options">
+                                            <input name="option[]" class="form-control" placeholder="Option 1">
+                                            <!-- <input name="option" class="form-control" placeholder="Option 2"> -->
+                                            <br />
+                                        </div>
+                                        <a class="btn btn-primary pull-right" onClick="addInput('options');"> <i class="fa fa-plus"></i> Add option</a>
                                     
                                     </div>
                                     
@@ -64,7 +66,7 @@
                                    
                                     <h5>
                                         Title 
-                                        <span class="cust-badge badge-wrong pull-right">[ You doesn't vote ]</span> 
+                                        <span class="cust-badge badge-wrong pull-right">[ You didn't vote ]</span> 
                                     </h5>
                                   
                                 </div>
@@ -107,7 +109,19 @@
 @section('script')
 
     <script>
-
+        var counter = 1;
+        var limit = 5;
+        function addInput(divName){
+            if (counter == limit)  {
+                alert("You have reached the limit of adding " + counter + " options");
+            }
+            else {
+                var newdiv = document.createElement('div');
+                newdiv.innerHTML =  "<input type='text' class='form-control' placeholder='Option " + (counter + 1) +"' name='option[]'> <br />";
+                document.getElementById(divName).appendChild(newdiv);
+                counter++;
+            }
+        }
         var token='{{\Illuminate\Support\Facades\Session::token()}}';
 
     </script>
