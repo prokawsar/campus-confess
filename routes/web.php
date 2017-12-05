@@ -13,7 +13,13 @@ use App\Events\UserComment;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    
+    if (Auth::check())
+    {
+        
+    }
+
+   return view('welcome');
 });
 
 Route::get('/terms', function() {
@@ -48,3 +54,7 @@ Route::post('/dislike','HomeController@dislike');
 Route::post('/postComment','HomeController@postComment');
 
 Route::post('deletePost','HomeController@deletePost');
+
+Route::get('/vote', function(){
+    return view('vote');
+})->name('vote');

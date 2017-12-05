@@ -44,11 +44,25 @@ a:visited{
   color: #000;
   text-decoration: none;
 }
+.cust-badge {
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: normal;
+  color: #ffffff;
+  line-height: 1;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-align: center;
+  background-color: #bbbbbb;
+}
+
 .badge-success {
   background-color: #0f9bf8 !important;
 }
 
-.badge-category {
+.badge-wrong {
   background-color: #FB503B !important;
 }
 

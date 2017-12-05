@@ -27,6 +27,15 @@ class PostCategory extends Model
         WHERE total.cat_id = post_category.id
         ORDER by cat_name');
 
+    // From somewhere I get, but not working
+    
+    //    $total = DB::select('post_category.id as cat_id','post_category.cat_name as name','total.total_post as total_post')
+    //     ->from('post_category')
+    //     ->from('SELECT cat_id, COUNT(cat_id) total_post FROM user_posts GROUP BY cat_id as total')
+    //     ->where('total.cat_id', '=', 'post_category.id')
+    //     ->orderBy('cat_name', 'ASC')
+    //     ->get();
+
         return $total;
     }
 }

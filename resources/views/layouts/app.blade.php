@@ -44,6 +44,10 @@
                     <ul class="nav navbar-nav">
                          @if (Auth::user())
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('vote') }}">  <i class="fa fa-dot-circle-o"></i> Voting</a> 
+                        
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('category') }}">  <i class="fa fa-navicon"></i> Category</a> 
                         
                             </li>
