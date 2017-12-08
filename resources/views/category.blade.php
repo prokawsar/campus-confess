@@ -22,8 +22,8 @@
                
                 <!-- ($categories as $category) -->
                 @foreach($total as $card)
-                    <a href="/category/{{$card->name}}" class="list-group-item">{{ $card->name}}
-                    <span class="badge badge-success">{{ $card->total_post}}</span>
+                    <a href="/category/{{$card->cat_name}}" class="list-group-item">{{ $card->cat_name}}
+                    <span class="badge badge-success">{{ $card->total}}</span>
                     </a>
                 @endforeach
                
