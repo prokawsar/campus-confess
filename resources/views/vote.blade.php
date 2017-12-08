@@ -77,21 +77,25 @@
                                 <div class="panel-body"  id="postDiv">
                                  
                                     <p class="lead">{{ $votes->vote_description }}</p>
-
+                                    
+                                    @php
+                                        $options = \App\VoteOption::where('vote_id', $votes->id)->get();
+                                    @endphp
                                     <div id="reload" class="reloadMyWall">
+                                    @foreach($options as $opt)
                                         <div class="radio">
                                             <label>
                                                 <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-                                                Option one  <span class="cust-badge badge-success">5</span>
+                                                {{ $opt->opt_name }} <span class="cust-badge badge-success"> {{ $opt->total }}</span>
                                             </label>
                                         </div>
-                                        <div class="radio">
+                                        <!-- <div class="radio">
                                             <label>
                                                 <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
                                                 Option two  <span class="cust-badge badge-success">10</span>
                                             </label>
-                                        </div>
-
+                                        </div> -->
+                                    @endforeach
                                     </div>
             
                                     <div class="form-group">
@@ -116,7 +120,7 @@
 
 @section('script')
     
-    <script src="{{asset('js/Posts.js')}}"></script>
+    <script src="{{asset('js/Votes.js')}}"></script>
 
     <script>
         var counter = 1;

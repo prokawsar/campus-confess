@@ -8,6 +8,11 @@ use App\VoteOption;
 
 class VoteController extends Controller
 {   
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     { 
         $allVotes = Vote::orderBy('created_at', 'DESC')->paginate(3);
@@ -17,15 +22,19 @@ class VoteController extends Controller
     public function CreateVote(Request $request){
         $vote = new Vote();
         $voteOption = new VoteOption();
-        $vote_id = $vote::select('id')->orderBy('created_at', 'DESC')->first(); // on this vote I have to save options
 
         if($request->title!='' && $request->description!=''){
             $vote->create(['title'=>$request->title,'vote_description'=>$request->description]);
         }
+        $vote_id = $vote::select('id')->orderBy('created_at', 'DESC')->first(); // on this vote I have to save options        
         $data=$request->options;
-        for($i=0;$i<sizeof($data);$i++) {
+
+        for($i=0; $i<sizeof($data); $i++) {
             $voteOption->create(['vote_id'=>$vote_id->id,'opt_name'=>$data[$i]]);
         }
-        return "Vote created";
+
+        return response()->json([
+            'message'=>'Vote Created'
+        ]);
     }
 }
