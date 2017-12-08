@@ -12,6 +12,7 @@ class Vote extends Model
      * @var string
      */
     protected $table = 'vote';
+    protected $fillable=['title','vote_description'];
     
     public function vote_options()
     {

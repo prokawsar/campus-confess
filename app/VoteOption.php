@@ -12,6 +12,8 @@ class VoteOption extends Model
      * @var string
      */
     protected $table = 'vote_option';
+    protected $fillable=['opt_name','vote_id'];
+
 
     public function in_vote()
     {

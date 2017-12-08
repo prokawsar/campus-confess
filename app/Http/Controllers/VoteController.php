@@ -17,23 +17,15 @@ class VoteController extends Controller
     public function CreateVote(Request $request){
         $vote = new Vote();
         $voteOption = new VoteOption();
-        
-        $vote->title = $request->title;        
-        $vote->vote_description = $request->description;               
-        $vote->save();
-
         $vote_id = $vote::select('id')->orderBy('created_at', 'DESC')->first(); // on this vote I have to save options
-        
 
-        // foreach($request->options as $option){ // saving all options in that vote_id
-        //     $voteOption->opt_name = $option;
-        //     $voteOption->vote_id = $vote_id;
-        //     $voteOption->save();
-        // }
-
-        return response()->json([
-            'message'=>'Vote Created'
-            
-        ]);
+        if($request->title!='' && $request->description!=''){
+            $vote->create(['title'=>$request->title,'vote_description'=>$request->description]);
+        }
+        $data=$request->options;
+        for($i=0;$i<sizeof($data);$i++) {
+            $voteOption->create(['vote_id'=>$vote_id->id,'opt_name'=>$data[$i]]);
+        }
+        return "Vote created";
     }
 }

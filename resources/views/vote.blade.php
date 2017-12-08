@@ -121,6 +121,7 @@
     <script>
         var counter = 1;
         var limit = 5;
+       // var option=option.val();
         function addInput(divName){
             if (counter == limit)  {
                 alert("You have reached the limit of adding " + counter + " options");
@@ -133,6 +134,7 @@
             }
         }
         var token='{{\Illuminate\Support\Facades\Session::token()}}';
+
 
     </script>
 @endsection
