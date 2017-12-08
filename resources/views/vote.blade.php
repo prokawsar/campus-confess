@@ -8,7 +8,7 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                    <div class="panel panel-default">
+                    <div class="panel panel-primary">
                         <div class="panel-heading">Create a Poll.....</div>
                         <div class="panel-body">
                             <span class="label label-success postConfirm" style="font-size: 15px"></span>
@@ -23,16 +23,16 @@
                             <form id="cform">
                                 {{csrf_field()}}
                                 <input type="hidden" value="{{\Illuminate\Support\Facades\Auth::id()}}" name="user_id" id="user_id">
-                                <input type="text" name="title" class="form-control" placeholder="Title">
+                                <input type="text" name="title" class="form-control" id="title" placeholder="Title">
                                 <br />
                                 <fieldset>
                                     <div class="form-group">
-                                        <textarea name="posts" id="posts" cols="10" rows="3" class="form-control" placeholder="Short description"></textarea>
+                                        <textarea name="description" id="description" cols="10" rows="3" class="form-control" placeholder="Short description"></textarea>
                                     </div>
                                     
                                     <div class="form-group col-md-4 pull-left">
                                         <div id="options">
-                                            <input name="option[]" class="form-control" placeholder="Option 1">
+                                            <input name="option[]" class="form-control option" placeholder="Option 1">
                                             <!-- <input name="option" class="form-control" placeholder="Option 2"> -->
                                             <br />
                                         </div>
@@ -42,7 +42,7 @@
                                     
                                     <div class="form-group">
                                         
-                                        <a class="btn btn-primary pull-right" id="addPost"> <i class="fa fa-terminal"></i> Create</a>
+                                        <a class="btn btn-primary pull-right" id="CreateVote"> <i class="fa fa-terminal"></i> Create</a>
                                     </div>
                                 </fieldset>
                             </form>
@@ -57,22 +57,26 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-primary">
-                <div id="postsTable" class="panel-body">
+                <div id="voteTable" class="panel-body">
                    
+                    @foreach($allVotes as $votes)
+
                     <div class="row" id="eachPoll">
                         <div class="col-md-8 col-md-offset-2">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                    
                                     <h5>
-                                        Title 
+                                        {{ $votes->title }}
+                                        <small>{{$votes->created_at->diffForHumans()}}</small>
+                                    
                                         <span class="cust-badge badge-wrong pull-right">[ You didn't vote ]</span> 
                                     </h5>
-                                  
+                                        
                                 </div>
                                 <div class="panel-body"  id="postDiv">
                                  
-                                    <p class="lead">Short Description</p>
+                                    <p class="lead">{{ $votes->vote_description }}</p>
 
                                     <div id="reload" class="reloadMyWall">
                                         <div class="radio">
@@ -98,6 +102,10 @@
                                 
                         </div>
                     </div> <!-- end eachPoll -->
+                    @endforeach
+                    
+                    {{$allVotes->links()}}
+
                 </div>
             </div>
         </div>
@@ -107,6 +115,8 @@
 @endsection
 
 @section('script')
+    
+    <script src="{{asset('js/Posts.js')}}"></script>
 
     <script>
         var counter = 1;
@@ -117,7 +127,7 @@
             }
             else {
                 var newdiv = document.createElement('div');
-                newdiv.innerHTML =  "<input type='text' class='form-control' placeholder='Option " + (counter + 1) +"' name='option[]'> <br />";
+                newdiv.innerHTML =  "<input type='text' class='form-control option' placeholder='Option " + (counter + 1) +"' name='option[]'> <br />";
                 document.getElementById(divName).appendChild(newdiv);
                 counter++;
             }

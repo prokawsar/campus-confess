@@ -58,6 +58,6 @@ Route::post('/postComment','HomeController@postComment');
 
 Route::post('deletePost','HomeController@deletePost');
 
-Route::get('/vote', function(){
-    return view('vote');
-})->name('vote');
+Route::get('/vote', 'VoteController@index')->name('vote');
+
+Route::post('/createVote','VoteController@CreateVote');
