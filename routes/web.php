@@ -61,3 +61,5 @@ Route::post('deletePost','HomeController@deletePost');
 Route::get('/vote', 'VoteController@index')->name('vote');
 
 Route::post('/createVote','VoteController@CreateVote');
+
+Route::post('/dovote','VoteController@DoVote');

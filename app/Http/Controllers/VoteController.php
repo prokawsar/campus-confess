@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Vote;
 use App\VoteOption;
+use App\VoteCount;
 
 class VoteController extends Controller
 {   
@@ -36,5 +37,18 @@ class VoteController extends Controller
         return response()->json([
             'message'=>'Vote Created'
         ]);
+    }
+
+    public function DoVote(Request $request){
+        $voteCount = new VoteCount();
+
+        $voteCount->vote_id = $request->vote_id;
+        $voteCount->opt_id = $request->opt_id;
+        $voteCount->user_id = $request->user_id;
+
+        $voteCount->save();
+
+        return alert('Vote Counted');
+        
     }
 }

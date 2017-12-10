@@ -66,6 +66,7 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                    
+                                    <input type="hidden" name="voteID" value="{{ $votes->id }}">
                                     <h5>
                                         {{ $votes->title }}
                                         <small>{{$votes->created_at->diffForHumans()}}</small>
@@ -83,8 +84,11 @@
                                     @endphp
                                     <div id="reload" class="reloadMyWall">
                                     @foreach($options as $opt)
-                                        <div class="radio">
+                                        <div class="radio{{ $opt->id }}">
                                             <label>
+                                                <input type="hidden" id="optionsID" value="{{ $opt->id }}">
+                                                <input type="hidden" value="{{\Illuminate\Support\Facades\Auth::id()}}" name="user_id" id="user_id">
+                                
                                                 <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
                                                 {{ $opt->opt_name }} <span class="cust-badge badge-success"> {{ $opt->total }}</span>
                                             </label>
@@ -99,7 +103,7 @@
                                     </div>
             
                                     <div class="form-group">
-                                        <a class="btn btn-primary pull-right"> <i class="fa fa-thumbs-up"></i> Vote</a>
+                                        <a class="btn btn-primary pull-right" id="doVote"> <i class="fa fa-thumbs-up"></i> Vote</a>
                                     </div>
                                 </div>
                             </div>

@@ -41,3 +41,29 @@ $(document).on('click','#CreateVote',function () {
         })
     }
 });
+
+$(document).on('click','#doVote',function () {
+    var vote_id = $('#voteID').val();
+    var opt_id = $('#optionsID').val();
+    var user_id = $('#user_id').val();
+    
+   // alert(opt_id);
+
+    $.ajax({
+        type: 'post',
+        url: '/dovote',
+        data: {
+            _token: token,
+            vote_id: vote_id,
+            opt_id: opt_id,
+            user_id: user_id
+        },
+        success: function(response){
+            $('#doVote').hide();
+            alert("Vote Counted");
+        },
+        error: function(response){
+            alert(response.error);
+        }
+    })
+});
