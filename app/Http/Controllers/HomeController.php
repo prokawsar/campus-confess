@@ -117,9 +117,11 @@ class HomeController extends Controller
 
         $post_id=$request['post_id'];
         $comment=$request['comment'];
-
+        $user_id=$request['user_id'];
+        
         $postComment->post_id=$post_id;
         $postComment->comment=$comment;
+        $postComment->user_id=$user_id;
         $postComment->save();
 
     }

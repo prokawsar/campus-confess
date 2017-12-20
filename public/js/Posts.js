@@ -103,7 +103,7 @@ $(document).on('click','#commentArea',function () {
 
 });
 
-function postButtonClicked(id){
+function postButtonClicked(id, user_id){
 
     var elementId = document.getElementById(id+'comment');
     var comment=elementId.value;
@@ -118,7 +118,8 @@ function postButtonClicked(id){
             data:{
                 _token:token,
                 comment:comment,
-                post_id:id
+                post_id:id,
+                user_id: user_id
             },
             success:function (data) {
 
@@ -129,7 +130,6 @@ function postButtonClicked(id){
 
     }
 }
-
 
 
 $(document).on('click','.delete',function(){

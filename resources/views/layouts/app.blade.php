@@ -54,17 +54,6 @@
                         @endif
                     </ul>
                
-                    <!-- <form class="nav navbar-nav navbar-form" id="navBarSearch" role="search">
-                        <div class="form-group">
-                            <div style="display:table;" class="input-group">
-                                <input type="text" class="form-control" placeholder="Search any word...">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-green" type="button"><i class="fa fa-search"></i></button>
-                                </span>
-                            </div>
-                        </div>
-                    </form> -->
-                
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
@@ -72,10 +61,22 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"> <i class="fa fa-globe"></i> Notification</a> 
-                        
+                            
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                                    <i class="fa fa-globe"></i> Notification <span class="badge badge-success">3</span>
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Notification 1</a> 
+                                    <a class="nav-link" href="#">Notification 2</a> 
+                            
+                                </li>
+                                    
+                                </ul>
                             </li>
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                                     <i class="fa fa-user"></i> {{ Auth::user()->display_name }} <span class="caret"></span>
