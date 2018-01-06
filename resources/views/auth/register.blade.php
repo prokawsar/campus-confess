@@ -22,7 +22,7 @@
                             <label for="campus" class="col-md-4 control-label">Campus Name</label>
 
                             <div class="col-md-6">
-                                <input id="campus" type="text" class="form-control" name="campus" value ="Daffodil International Academy" readonly required>
+                                <input id="campus" type="text" class="form-control" name="campus" required>
                                 
                             </div>
                         </div>

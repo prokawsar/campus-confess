@@ -125,4 +125,10 @@ class HomeController extends Controller
         $postComment->save();
 
     }
+
+    public function setNotification($post_id, $user_id){
+        if($user_id != Auth::user()->id){
+            
+        }
+    }
 }

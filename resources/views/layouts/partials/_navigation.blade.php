@@ -14,7 +14,8 @@
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
                 {{ config('', 'Confesser') }}
-            </a>
+                
+            </a><small class="">beta</small>
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">

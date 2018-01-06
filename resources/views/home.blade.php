@@ -59,7 +59,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-primary">
-                <div class="panel-heading">Confess from ( Daffodil International Academy ) </div>
+                <div class="panel-heading">Confess feed </div>
                 <div id="postsTable" class="panel-body">
                     @foreach($allPosts as $posts)
 
@@ -68,6 +68,8 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading"><strong>Posted by <img src="{{asset('img/p_logo.jpg')}}" alt="profile">{{$posts->user->display_name}} &nbsp</strong>
                                  {{$posts->created_at->diffForHumans()}}
+
+                                    <span class="cust-badge badge-success"><strong>{{ $posts->user->campus }}</strong> </span>
                                     <div class="pull-right">
                                     <!-- $category = \App\PostCategory::where('id',$posts->cat_id)->select('cat_name')->first(); -->
                                         
@@ -75,7 +77,7 @@
                                             $category=\App\PostCategory::find($posts->cat_id);
                                         @endphp
                                         
-                                        [ <span class="badge badge-success"><strong>{{ $category->cat_name}}</strong> </span> ]
+                                        [ <span class="badge badge-success">  <i class="fa fa-tags"></i> <strong>{{ $category->cat_name}}</strong> </span> ]
                                     </div> 
                                 </div>
                                 <div class="panel-body"  id="postDiv">
