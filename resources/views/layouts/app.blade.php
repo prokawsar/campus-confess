@@ -62,7 +62,11 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
-                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://gist.github.com/prokawsar/e69c1c3c2ec05fe9f6e699560a0e262f" target="_blank">  <i class="fa fa-navicon"></i> Contribute to this project</a> 
+                        
+                            </li>
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                                     <i class="fa fa-globe"></i> Notification <span class="badge badge-success">3</span>
